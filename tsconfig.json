@@ -3,12 +3,8 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@*": [
-        "./src/*"
-      ]
+      "@*": ["./src/*"]
     }
   },
-  "exclude": [
-    "public"
-  ]
+  "exclude": ["public"]
 }

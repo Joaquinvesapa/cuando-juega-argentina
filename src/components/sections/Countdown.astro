@@ -1,19 +1,128 @@
 ---
 const ARR = new Array(1, 2, 3, 4);
+const TIMESTAMP_DATE = 1729771200000;
 ---
 
-<section class="w-full gap-1 md:gap-2 flex items-center ">
-  {
-    ARR.map((arr) => (
-      <article class:list={["bg-cardslight dark:bg-cardsdark",
-                            "w-full h-auto",
-                            "flex flex-col justify-center items-center gap-2 md:gap-5",
-                            "text-textlight dark:text-textdark",
-                            "py-4 md:py-8 rounded-lg"]}>
-        <span class="font-bold text-accentlight text-2xl md:text-5xl">14</span>
-        <h3 class="font-bold text-sm md:text-lg">DÍAS</h3>
-      </article>
-      <p class=" text-secondarylight text-5xl md:text-7xl last:hidden text-center">:</p>
-    ))
-  }
+<section
+  id="countdown"
+  data-date={TIMESTAMP_DATE}
+  class="w-full gap-1 md:gap-2 flex items-center"
+>
+  <article
+    data-days
+    class:list={[
+      "bg-cardslight dark:bg-cardsdark",
+      "w-full h-auto",
+      "flex flex-col justify-center items-center gap-2 md:gap-5",
+      "text-textlight dark:text-textdark",
+      "py-4 md:py-8 rounded-lg",
+    ]}
+  >
+    <span id="days" class="font-bold text-accentlight text-2xl md:text-5xl"
+      >14</span
+    >
+    <h3 class="font-bold text-sm md:text-lg">DÍAS</h3>
+  </article>
+  <p class="text-secondarylight text-5xl md:text-7xl last:hidden text-center">
+    :
+  </p>
+  <article
+    data-hours
+    class:list={[
+      "bg-cardslight dark:bg-cardsdark",
+      "w-full h-auto",
+      "flex flex-col justify-center items-center gap-2 md:gap-5",
+      "text-textlight dark:text-textdark",
+      "py-4 md:py-8 rounded-lg",
+    ]}
+  >
+    <span id="hours" class="font-bold text-accentlight text-2xl md:text-5xl"
+      >14</span
+    >
+    <h3 class="font-bold text-sm md:text-lg">HORAS</h3>
+  </article>
+  <p class="text-secondarylight text-5xl md:text-7xl last:hidden text-center">
+    :
+  </p>
+  <article
+    data-minutes
+    class:list={[
+      "bg-cardslight dark:bg-cardsdark",
+      "w-full h-auto",
+      "flex flex-col justify-center items-center gap-2 md:gap-5",
+      "text-textlight dark:text-textdark",
+      "py-4 md:py-8 rounded-lg",
+    ]}
+  >
+    <span id="minutes" class="font-bold text-accentlight text-2xl md:text-5xl"
+      >14</span
+    >
+    <h3 class="font-bold text-sm md:text-lg">MINUTOS</h3>
+  </article>
+  <p class="text-secondarylight text-5xl md:text-7xl last:hidden text-center">
+    :
+  </p>
+  <article
+    data-seconds
+    class:list={[
+      "bg-cardslight dark:bg-cardsdark",
+      "w-full h-auto",
+      "flex flex-col justify-center items-center gap-2 md:gap-5",
+      "text-textlight dark:text-textdark",
+      "py-4 md:py-8 rounded-lg",
+    ]}
+  >
+    <span id="seconds" class="font-bold text-accentlight text-2xl md:text-5xl"
+      >14</span
+    >
+    <h3 class="font-bold text-sm md:text-lg">SEGUNDOS</h3>
+  </article>
 </section>
+
+<script>
+  const SECONDS = 1000;
+  const MINUTES = SECONDS * 60;
+  const HOURS = MINUTES * 60;
+  const DAYS = HOURS * 60;
+
+  function init() {
+    const $countdown = document.querySelector("#countdown");
+    if (!$countdown) return;
+
+    const $days = $countdown.querySelector("[data-days] span");
+    const $hours = $countdown.querySelector("[data-hours] span");
+    const $minutes = $countdown.querySelector("[data-minutes] span");
+    const $seconds = $countdown.querySelector("[data-seconds] span");
+
+    const timestamp = $countdown.getAttribute("data-date");
+    if (!timestamp) return;
+    const targetDate = new Date(+timestamp).getTime();
+
+    function updateCountdown() {
+      const now = Date.now();
+      const diff = targetDate - now;
+
+      if ($days instanceof HTMLElement) {
+        $days.textContent = Math.floor(diff / DAYS).toString();
+      }
+      if ($hours instanceof HTMLElement) {
+        $hours.textContent = Math.floor((diff % DAYS) / HOURS).toString();
+      }
+      if ($minutes instanceof HTMLElement) {
+        $minutes.textContent = Math.floor((diff % HOURS) / MINUTES).toString();
+      }
+      if ($seconds instanceof HTMLElement) {
+        $seconds.textContent = Math.floor(
+          (diff % MINUTES) / SECONDS
+        ).toString();
+      }
+    }
+
+    setInterval(updateCountdown, 1000);
+  }
+
+  // function updateCountdown() {}
+  // const interval = setInterval(updateCountdown, 1000);
+  // updateCountdown();
+  init();
+</script>
