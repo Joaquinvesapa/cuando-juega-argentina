@@ -2,7 +2,7 @@
 import Header from "@/components/Header.astro";
 import "@fontsource-variable/inter";
 interface Props {
-	title: string;
+  title: string;
 }
 
 const { title } = Astro.props;
@@ -10,34 +10,36 @@ const { title } = Astro.props;
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta
-			name="description"
-			content="Página web para consultar cuando juega la seleeción de Argentina"
-		/>
-		<meta name="viewport" content="width=device-width" />
-		<title>{title}</title>
-	</head>
-	<body>
-		<main
-			class="min-h-screen bg-bglight dark:bg-bgdark px-3 md:px-40 lg:px-56 xl:px-64 2xl:px-72 flex flex-col items-center"
-		>
-			<Header />
-			<slot />
-		</main>
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="description"
+      content="Página web para consultar cuando juega la seleeción de Argentina"
+    />
+    <meta name="viewport" content="width=device-width" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <main
+      class="min-h-screen bg-bglight dark:bg-bgdark px-3 md:px-20 xl:px-64 2xl:px-96 flex flex-col items-center"
+    >
+      <section class="w-full">
+        <Header />
+      </section>
+      <slot />
+    </main>
+  </body>
 </html>
 <style is:global>
-	:root {
-		color-scheme: light dark;
-	}
-	@media (prefers-color-scheme: dark) {
-		body {
-			color: rgba(255, 255, 255, 0.9);
-		}
-	}
-	body {
-		font-family: "Inter Variable", sans-serif;
-	}
+  :root {
+    color-scheme: light dark;
+  }
+  @media (prefers-color-scheme: dark) {
+    body {
+      color: rgba(255, 255, 255, 0.9);
+    }
+  }
+  body {
+    font-family: "Inter Variable", sans-serif;
+  }
 </style>
