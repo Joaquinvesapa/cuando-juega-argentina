@@ -1,0 +1,19 @@
+---
+const ARR = new Array(1, 2, 3, 4);
+---
+
+<section class="w-full gap-1 md:gap-2 flex items-center ">
+  {
+    ARR.map((arr) => (
+      <article class:list={["bg-cardslight dark:bg-cardsdark",
+                            "w-full h-auto",
+                            "flex flex-col justify-center items-center gap-2 md:gap-5",
+                            "text-textlight dark:text-textdark",
+                            "py-4 md:py-8 rounded-lg"]}>
+        <span class="font-bold text-accentlight text-2xl md:text-5xl">14</span>
+        <h3 class="font-bold text-sm md:text-lg">DÍAS</h3>
+      </article>
+      <p class=" text-secondarylight text-5xl md:text-7xl last:hidden text-center">:</p>
+    ))
+  }
+</section>
