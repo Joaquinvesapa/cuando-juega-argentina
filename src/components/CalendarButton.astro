@@ -1,0 +1,74 @@
+<section class="bg-red-400 w-full h-auto">
+	<button
+		id="add-to-calendar"
+		class:list={[
+			'alto-button',
+			'text-textlight dark:text-textdark',
+			'bg-accentlight/40 dark:bg-primarydark hover:bg-accentlight hover:dark:bg-secondarydark',
+			'w-60 h-auto py-2 rounded-lg',
+			'hover:scale-95 transition-all',
+		]}
+		><h5 class:list={['text-textlight dark:text-textdark', 'font-bold']}>
+			Agregar al calendario
+		</h5>
+	</button>
+</section>
+<style is:inline>
+	/* #add-to-calendar {
+    @apply text-red-500 opacity-5;
+  } */
+</style>
+<script is:inline>
+	// document.addEventListener("astro:page-load", () => {
+	const config = {
+		name: '🥊 La Velada del Año 4 - El Evento del Año',
+		description:
+			'¡Arranca la Velada del Año!<br><br>Entra a Twitch y no te lo pierdas → [url]https://twitch.tv/ibai[/url]',
+		startDate: '2024-07-13',
+		endDate: '2024-07-13',
+		startTime: '19:00',
+		endTime: '22:00',
+		options: ['Google', 'Apple', 'Microsoft365', 'MicrosoftTeams'],
+		timeZone: 'Europe/Madrid',
+		trigger: 'click',
+		iCalFileName: 'Reminder-Event',
+	}
+
+	let status
+
+	function loadStyle(src) {
+		return new Promise((resolve, reject) => {
+			const link = document.createElement('link')
+			link.href = src
+			link.rel = 'stylesheet'
+
+			link.onload = () => resolve(link)
+			link.onerror = () => reject(new Error(`Style load error for ${src}`))
+
+			document.head.append(link)
+		})
+	}
+
+	const button = document.querySelector('#add-to-calendar')
+
+	const handleClick = async () => {
+		if (status === 'loading') return
+		console.log(status)
+		if (!status) {
+			const text = button.innerHTML
+			button.innerHTML = 'Cargando...'
+			status = 'loading'
+			await Promise.all([
+				import('/js/add-to-calendar.js'),
+				loadStyle('/css/add-to-calendar.css'),
+			])
+			status = 'loaded'
+			button.innerHTML = text
+		}
+
+		window.atcb_action(config, button)
+	}
+
+	button?.addEventListener('click', handleClick)
+	// });
+</script>

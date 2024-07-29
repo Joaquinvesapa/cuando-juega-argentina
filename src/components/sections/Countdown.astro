@@ -1,4 +1,6 @@
 ---
+import DateCounter from "@components/DateCounter.astro";
+
 const ARR = new Array(1, 2, 3, 4);
 const TIMESTAMP_DATE = 1729771200000;
 ---
@@ -8,75 +10,27 @@ const TIMESTAMP_DATE = 1729771200000;
   data-date={TIMESTAMP_DATE}
   class="w-full gap-1 md:gap-2 flex items-center"
 >
-  <article
-    data-days
-    class:list={[
-      "bg-cardslight dark:bg-cardsdark",
-      "w-full h-auto",
-      "flex flex-col justify-center items-center gap-2 md:gap-5",
-      "text-textlight dark:text-textdark",
-      "py-4 md:py-8 rounded-lg",
-    ]}
-  >
-    <span id="days" class="font-bold text-accentlight text-2xl md:text-5xl"
-      >14</span
-    >
-    <h3 class="font-bold text-sm md:text-lg">DÍAS</h3>
-  </article>
+  <DateCounter id="days" attribute={{ "data-days": "" }} label="días" />
   <p class="text-secondarylight text-5xl md:text-7xl last:hidden text-center">
     :
   </p>
-  <article
-    data-hours
-    class:list={[
-      "bg-cardslight dark:bg-cardsdark",
-      "w-full h-auto",
-      "flex flex-col justify-center items-center gap-2 md:gap-5",
-      "text-textlight dark:text-textdark",
-      "py-4 md:py-8 rounded-lg",
-    ]}
-  >
-    <span id="hours" class="font-bold text-accentlight text-2xl md:text-5xl"
-      >14</span
-    >
-    <h3 class="font-bold text-sm md:text-lg">HORAS</h3>
-  </article>
+  <DateCounter id="hours" attribute={{ "data-hours": "" }} label="horas" />
   <p class="text-secondarylight text-5xl md:text-7xl last:hidden text-center">
     :
   </p>
-  <article
-    data-minutes
-    class:list={[
-      "bg-cardslight dark:bg-cardsdark",
-      "w-full h-auto",
-      "flex flex-col justify-center items-center gap-2 md:gap-5",
-      "text-textlight dark:text-textdark",
-      "py-4 md:py-8 rounded-lg",
-    ]}
-  >
-    <span id="minutes" class="font-bold text-accentlight text-2xl md:text-5xl"
-      >14</span
-    >
-    <h3 class="font-bold text-sm md:text-lg">MINUTOS</h3>
-  </article>
+  <DateCounter
+    id="minutes"
+    attribute={{ "data-minutes": "" }}
+    label="minutos"
+  />
   <p class="text-secondarylight text-5xl md:text-7xl last:hidden text-center">
     :
   </p>
-  <article
-    data-seconds
-    class:list={[
-      "bg-cardslight dark:bg-cardsdark",
-      "w-full h-auto",
-      "flex flex-col justify-center items-center gap-2 md:gap-5",
-      "text-textlight dark:text-textdark",
-      "py-4 md:py-8 rounded-lg",
-    ]}
-  >
-    <span id="seconds" class="font-bold text-accentlight text-2xl md:text-5xl"
-      >14</span
-    >
-    <h3 class="font-bold text-sm md:text-lg">SEGUNDOS</h3>
-  </article>
+  <DateCounter
+    id="seconds"
+    attribute={{ "data-seconds": "" }}
+    label="segundos"
+  />
 </section>
 
 <script>
@@ -84,7 +38,6 @@ const TIMESTAMP_DATE = 1729771200000;
   const MINUTES = SECONDS * 60;
   const HOURS = MINUTES * 60;
   const DAYS = HOURS * 60;
-
   function init() {
     const $countdown = document.querySelector("#countdown");
     if (!$countdown) return;
@@ -117,12 +70,13 @@ const TIMESTAMP_DATE = 1729771200000;
         ).toString();
       }
     }
-
+    updateCountdown();
     setInterval(updateCountdown, 1000);
   }
-
-  // function updateCountdown() {}
-  // const interval = setInterval(updateCountdown, 1000);
-  // updateCountdown();
+  document.addEventListener("astro:page-load", () => {
+    // function updateCountdown() {}
+    // const interval = setInterval(updateCountdown, 1000);
+    // updateCountdown();
+  });
   init();
 </script>

@@ -1,0 +1,28 @@
+---
+interface Props {
+  id: string;
+  label: string;
+  attribute: Record<string, string>;
+}
+const { id, label, attribute } = Astro.props;
+---
+
+<article
+  {...attribute}
+  class:list={[
+    "bg-cardslight dark:bg-cardsdark",
+    "w-full h-auto",
+    "flex flex-col justify-center items-center gap-2 md:gap-5",
+    "text-textlight dark:text-textdark",
+    "py-4 md:py-8 rounded-lg",
+    "aspect-square",
+  ]}
+>
+  <span
+    id={id}
+    class="font-bold text-accentlight text-3xl sm:text-4xl md:text-5xl 2xl:text-6xl"
+  ></span>
+  <h3 class="font-bold text-sm sm:text-md md:text-lg lg:text-2xl uppercase">
+    {label}
+  </h3>
+</article>
