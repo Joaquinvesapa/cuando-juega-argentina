@@ -1,0 +1,15 @@
+---
+import MONTHS from '../../../public/matches.json'
+---
+{
+  MONTHS.map(month => (
+    <h2>{month.month}</h2>
+    <div>
+      {month.matches.map( match => (
+        <article>
+          <span>Argentina vs {match.versus}</span>
+        </article>
+      ))}
+    </div>
+  ))
+}

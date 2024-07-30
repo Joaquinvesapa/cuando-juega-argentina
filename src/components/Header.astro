@@ -1,40 +1,40 @@
 ---
-import Linkedin from "@components/icons/Linkedin.astro";
-import Github from "./icons/Github.astro";
+import Linkedin from '@components/icons/Linkedin.astro'
+import Github from './icons/Github.astro'
 
 interface SocialInfo {
-  link: string;
-  label: string;
+	link: string
+	label: string
 }
 ---
 
 <header
-  class="h-auto rounded-lg py-3 px-5 flex w-full justify-between items-center mt-3 bg-cardslight dark:bg-cardsdark"
+	class="h-auto rounded-lg py-3 px-5 flex w-full justify-between items-center mt-3 bg-cardslight dark:bg-cardsdark"
 >
-  <div>
-    <a href="/">
-      <img
-        class="w-7 md:w-8 rounded-full aspect-square object-cover hover:scale-105 transition-all"
-        src="/argentina.webp"
-        alt=""
-      />
-    </a>
-  </div>
+	<div>
+		<a href="/">
+			<img
+				class="w-7 md:w-8 rounded-full aspect-square object-cover hover:scale-105 transition-all"
+				src="/argentina.webp"
+				alt=""
+			/>
+		</a>
+	</div>
 
-  <div class="flex gap-3 text-accentlight/40 dark:text-primarydark/40">
-    <a
-      href="https://www.linkedin.com/in/joaquin-vesapa/"
-      target="_blank"
-      rel="noopener"
-    >
-      <Linkedin
-        class:list={"w-7 md:w-8 h-auto hover:text-accentlight dark:hover:text-accentdark hover:scale-105 transition-all"}
-      />
-    </a>
-    <a href="https://github.com/joaquinvesapa" target="_blank" rel="noopener">
-      <Github
-        class:list={"w-7 md:w-8 h-auto hover:text-accentlight hover:scale-105 transition-all"}
-      />
-    </a>
-  </div>
+	<div class="flex gap-3 text-accentlight/40 dark:text-primarydark/40">
+		<a
+			href="https://www.linkedin.com/in/joaquin-vesapa/"
+			target="_blank"
+			rel="noopener"
+		>
+			<Linkedin
+				class:list={'w-7 md:w-8 h-auto hover:text-accentlight dark:hover:text-accentdark hover:scale-105 transition-all'}
+			/>
+		</a>
+		<a href="https://github.com/joaquinvesapa" target="_blank" rel="noopener">
+			<Github
+				class:list={'w-7 md:w-8 h-auto hover:text-accentlight hover:scale-105 transition-all'}
+			/>
+		</a>
+	</div>
 </header>
