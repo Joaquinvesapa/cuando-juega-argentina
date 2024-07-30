@@ -1,13 +1,14 @@
 ---
 import DateCounter from '@components/DateCounter.astro'
-
-const ARR = new Array(1, 2, 3, 4)
-const TIMESTAMP_DATE = 1729771200000
+import MATCHES from '@public/matches.json'
+const matchDate = MATCHES[0].matches[0].dateString
+const TIMESTAMP_DATE = new Date(matchDate).getTime()
 ---
 
 <section
 	id="countdown"
 	data-date={TIMESTAMP_DATE}
+	data-time="12:00:00 AM"
 	class="w-full gap-1 md:gap-2 flex items-center"
 >
 	<DateCounter id="days" attribute={{ 'data-days': '' }} label="días" />
@@ -51,6 +52,9 @@ const TIMESTAMP_DATE = 1729771200000
 			Math.floor(time).toString().padStart(2, '0')
 
 		const timestamp = $countdown.getAttribute('data-date')
+		// const time = $countdown.getAttribute('data-time')
+		// console.log(time)
+
 		if (!timestamp) return
 		const targetDate = new Date(+timestamp).getTime()
 
@@ -74,10 +78,5 @@ const TIMESTAMP_DATE = 1729771200000
 		updateCountdown()
 		setInterval(updateCountdown, 1000)
 	}
-	document.addEventListener('astro:page-load', () => {
-		// function updateCountdown() {}
-		// const interval = setInterval(updateCountdown, 1000);
-		// updateCountdown();
-	})
 	init()
 </script>

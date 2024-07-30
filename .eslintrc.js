@@ -17,7 +17,8 @@ module.exports = {
 	},
 	plugins: ['astro', 'tailwindcss', 'prettier'],
 	rules: {
-		'prettier/prettier': 'error', // Asegúrate de que Prettier sea tratado como un error
+		'prettier/prettier': 'error',
+		// Asegúrate de que Prettier sea tratado como un error
 		// Aquí puedes agregar reglas específicas o sobrescribir las reglas predeterminadas
 	},
 }

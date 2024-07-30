@@ -1,4 +1,21 @@
-<section class="w-full h-auto flex justify-center mt-5">
+---
+import type { Match } from '../types/types'
+interface Props {
+	nextMatch: Match
+}
+
+const { nextMatch } = Astro.props
+---
+
+<section
+	id="button-calendar-section"
+	data-comp={nextMatch.competition}
+	data-date={nextMatch.date}
+	data-versus={nextMatch.versus}
+	data-start-time={nextMatch.startTime}
+	data-end-time={nextMatch.endTime}
+	class="w-full h-auto flex justify-center mt-5"
+>
 	<button
 		id="add-to-calendar"
 		class:list={[
@@ -19,27 +36,28 @@
 		</h5>
 	</button>
 </section>
-<style is:inline>
-	/* #add-to-calendar {
-    @apply text-red-500 opacity-5;
-  } */
-</style>
 <script is:inline>
-	// document.addEventListener("astro:page-load", () => {
+	const btnCalendarSection = document.getElementById('button-calendar-section')
+
+	const competition = btnCalendarSection.getAttribute('data-comp')
+	const startDate = btnCalendarSection.getAttribute('data-date')
+	const versus = btnCalendarSection.getAttribute('data-versus')
+	const startTime = btnCalendarSection.getAttribute('data-start-time')
+	const endTime = btnCalendarSection.getAttribute('data-end-time')
+
 	const config = {
-		name: '🥊 La Velada del Año 4 - El Evento del Año',
-		description:
-			'¡Arranca la Velada del Año!<br><br>Entra a Twitch y no te lo pierdas → [url]https://twitch.tv/ibai[/url]',
-		startDate: '2024-07-13',
-		endDate: '2024-07-13',
-		startTime: '19:00',
-		endTime: '22:00',
+		name: `⚽ Argentina juega Vs ${versus}`,
+		description: `¡Juega la Selección Argentina por una partido de ${competition}`,
+		startDate: startDate,
+		startTime: startTime,
+		endTime: endTime,
 		options: ['Google', 'Apple', 'Microsoft365', 'MicrosoftTeams'],
-		timeZone: 'Europe/Madrid',
+		timeZone: 'America/Argentina/Buenos_Aires',
 		trigger: 'click',
 		iCalFileName: 'Reminder-Event',
 	}
 
+	// console.log(config)
 	let status
 
 	function loadStyle(src) {
@@ -59,7 +77,7 @@
 
 	const handleClick = async () => {
 		if (status === 'loading') return
-		console.log(status)
+		// console.log(status)
 		if (!status) {
 			const text = button.innerHTML
 			button.innerHTML = 'Cargando...'
@@ -71,6 +89,8 @@
 			status = 'loaded'
 			button.innerHTML = text
 		}
+
+		// config.startTime = button.getAttribute('data-date')
 
 		window.atcb_action(config, button)
 	}

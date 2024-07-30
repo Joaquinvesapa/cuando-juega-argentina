@@ -1,15 +1,52 @@
 ---
-import ToogleTheme from '@/components/ToogleThemeExample.astro'
-import Hero from '@/components/sections/Hero.astro'
-import Layout from '@/layouts/Layout.astro'
 import CalendarButton from '@components/CalendarButton.astro'
 import Countdown from '@components/sections/Countdown.astro'
 import FollowingMatches from '@components/sections/FollowingMatches.astro'
+import Hero from '@components/sections/Hero.astro'
+import Layout from '@layouts/Layout.astro'
+import MATCHES from '@public/matches.json'
+import type { Match } from '../types/types'
+import NextMatchInfo from '@componentssections/NextMatchInfo.astro'
+
+const nextMatch = MATCHES[0].matches[0]
+if (!nextMatch) return
+// Convert string to Date object
+let dateObj = new Date(nextMatch.dateString)
+const formatTime = (hours: string, minutes: string) => {
+	return `${hours}:${minutes}`
+}
+// Extract date and hour
+let originalDate = dateObj.toLocaleDateString()
+const [month, day, year] = originalDate.split('/')
+const fechaFormateada: string = `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`
+let startHour = new Date(nextMatch.dateString)
+	.getHours()
+	.toString()
+	.padStart(2, '0')
+let endHour = (new Date(nextMatch.dateString).getHours() + 2)
+	.toString()
+	.padStart(2, '0')
+let minutes = new Date(nextMatch.dateString)
+	.getMinutes()
+	.toString()
+	.padStart(2, '0')
+
+const startTime = formatTime(startHour, minutes)
+const endTime = formatTime(endHour, minutes)
+
+const match: Match = {
+	date: fechaFormateada,
+	startTime,
+	endTime,
+	versus: nextMatch.versus,
+	competition: nextMatch.competition,
+}
 ---
 
 <Layout title="Cuando juega Argentina 🇦🇷">
 	<Hero />
 	<Countdown />
-	<CalendarButton />
-	<FollowingMatches />
+	<NextMatchInfo match={match} />
+	{nextMatch.hour === 'TBD' && <CalendarButton nextMatch={match} />}
+	<FollowingMatches currentMatchId={nextMatch.id} />
 </Layout>

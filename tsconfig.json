@@ -3,7 +3,9 @@
 	"compilerOptions": {
 		"baseUrl": ".",
 		"paths": {
-			"@*": ["./src/*", "./public/*"]
+			"@components*": ["./src/components/*"],
+			"@layouts*": ["./src/layouts/*"],
+			"@public/*": ["./public/*"]
 		}
 	},
 	"exclude": ["public"]
