@@ -1,82 +1,83 @@
 ---
-import DateCounter from "@components/DateCounter.astro";
+import DateCounter from '@components/DateCounter.astro'
 
-const ARR = new Array(1, 2, 3, 4);
-const TIMESTAMP_DATE = 1729771200000;
+const ARR = new Array(1, 2, 3, 4)
+const TIMESTAMP_DATE = 1729771200000
 ---
 
 <section
-  id="countdown"
-  data-date={TIMESTAMP_DATE}
-  class="w-full gap-1 md:gap-2 flex items-center"
+	id="countdown"
+	data-date={TIMESTAMP_DATE}
+	class="w-full gap-1 md:gap-2 flex items-center"
 >
-  <DateCounter id="days" attribute={{ "data-days": "" }} label="días" />
-  <p class="text-secondarylight text-5xl md:text-7xl last:hidden text-center">
-    :
-  </p>
-  <DateCounter id="hours" attribute={{ "data-hours": "" }} label="horas" />
-  <p class="text-secondarylight text-5xl md:text-7xl last:hidden text-center">
-    :
-  </p>
-  <DateCounter
-    id="minutes"
-    attribute={{ "data-minutes": "" }}
-    label="minutos"
-  />
-  <p class="text-secondarylight text-5xl md:text-7xl last:hidden text-center">
-    :
-  </p>
-  <DateCounter
-    id="seconds"
-    attribute={{ "data-seconds": "" }}
-    label="segundos"
-  />
+	<DateCounter id="days" attribute={{ 'data-days': '' }} label="días" />
+	<p class="text-secondarylight text-5xl md:text-7xl last:hidden text-center">
+		:
+	</p>
+	<DateCounter id="hours" attribute={{ 'data-hours': '' }} label="horas" />
+	<p class="text-secondarylight text-5xl md:text-7xl last:hidden text-center">
+		:
+	</p>
+	<DateCounter
+		id="minutes"
+		attribute={{ 'data-minutes': '' }}
+		label="minutos"
+	/>
+	<p class="text-secondarylight text-5xl md:text-7xl last:hidden text-center">
+		:
+	</p>
+	<DateCounter
+		id="seconds"
+		attribute={{ 'data-seconds': '' }}
+		label="segundos"
+	/>
 </section>
 
 <script>
-  const SECONDS = 1000;
-  const MINUTES = SECONDS * 60;
-  const HOURS = MINUTES * 60;
-  const DAYS = HOURS * 60;
-  function init() {
-    const $countdown = document.querySelector("#countdown");
-    if (!$countdown) return;
+	const SECONDS = 1000
+	const MINUTES = SECONDS * 60
+	const HOURS = MINUTES * 60
+	const DAYS = HOURS * 24
+	function init() {
+		const $countdown = document.querySelector('#countdown')
+		if (!$countdown) return
 
-    const $days = $countdown.querySelector("[data-days] span");
-    const $hours = $countdown.querySelector("[data-hours] span");
-    const $minutes = $countdown.querySelector("[data-minutes] span");
-    const $seconds = $countdown.querySelector("[data-seconds] span");
+		const $days = $countdown.querySelector('[data-days] span')
+		const $hours = $countdown.querySelector('[data-hours] span')
+		const $minutes = $countdown.querySelector('[data-minutes] span')
+		const $seconds = $countdown.querySelector('[data-seconds] span')
 
-    const timestamp = $countdown.getAttribute("data-date");
-    if (!timestamp) return;
-    const targetDate = new Date(+timestamp).getTime();
+		const formatDate = (time: number) =>
+			Math.floor(time).toString().padStart(2, '0')
 
-    function updateCountdown() {
-      const now = Date.now();
-      const diff = targetDate - now;
+		const timestamp = $countdown.getAttribute('data-date')
+		if (!timestamp) return
+		const targetDate = new Date(+timestamp).getTime()
 
-      if ($days instanceof HTMLElement) {
-        $days.textContent = Math.floor(diff / DAYS).toString();
-      }
-      if ($hours instanceof HTMLElement) {
-        $hours.textContent = Math.floor((diff % DAYS) / HOURS).toString();
-      }
-      if ($minutes instanceof HTMLElement) {
-        $minutes.textContent = Math.floor((diff % HOURS) / MINUTES).toString();
-      }
-      if ($seconds instanceof HTMLElement) {
-        $seconds.textContent = Math.floor(
-          (diff % MINUTES) / SECONDS
-        ).toString();
-      }
-    }
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
-  }
-  document.addEventListener("astro:page-load", () => {
-    // function updateCountdown() {}
-    // const interval = setInterval(updateCountdown, 1000);
-    // updateCountdown();
-  });
-  init();
+		function updateCountdown() {
+			const now = Date.now()
+			const diff = targetDate - now
+
+			if ($days instanceof HTMLElement) {
+				$days.textContent = formatDate(diff / DAYS)
+			}
+			if ($hours instanceof HTMLElement) {
+				$hours.textContent = formatDate((diff % DAYS) / HOURS)
+			}
+			if ($minutes instanceof HTMLElement) {
+				$minutes.textContent = formatDate((diff % HOURS) / MINUTES)
+			}
+			if ($seconds instanceof HTMLElement) {
+				$seconds.textContent = formatDate((diff % MINUTES) / SECONDS)
+			}
+		}
+		updateCountdown()
+		setInterval(updateCountdown, 1000)
+	}
+	document.addEventListener('astro:page-load', () => {
+		// function updateCountdown() {}
+		// const interval = setInterval(updateCountdown, 1000);
+		// updateCountdown();
+	})
+	init()
 </script>
