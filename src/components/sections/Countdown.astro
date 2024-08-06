@@ -17,11 +17,21 @@ const TIMESTAMP_DATE = nextMatch.timeStamp
 	data-time="12:00:00 AM"
 	class="w-full gap-1 md:gap-2 flex items-center"
 >
-	<DateCounter id="days" attribute={{ 'data-days': '' }} label="días" />
+	<DateCounter
+		id="days"
+		attribute={{ 'data-days': '' }}
+		label="días"
+		shortLabel="días"
+	/>
 	<p class="text-secondarylight text-5xl md:text-7xl last:hidden text-center">
 		:
 	</p>
-	<DateCounter id="hours" attribute={{ 'data-hours': '' }} label="horas" />
+	<DateCounter
+		id="hours"
+		attribute={{ 'data-hours': '' }}
+		label="horas"
+		shortLabel="hrs"
+	/>
 	<p class="text-secondarylight text-5xl md:text-7xl last:hidden text-center">
 		:
 	</p>
@@ -29,6 +39,7 @@ const TIMESTAMP_DATE = nextMatch.timeStamp
 		id="minutes"
 		attribute={{ 'data-minutes': '' }}
 		label="minutos"
+		shortLabel="mins"
 	/>
 	<p class="text-secondarylight text-5xl md:text-7xl last:hidden text-center">
 		:
@@ -37,6 +48,7 @@ const TIMESTAMP_DATE = nextMatch.timeStamp
 		id="seconds"
 		attribute={{ 'data-seconds': '' }}
 		label="segundos"
+		shortLabel="segs"
 	/>
 </section>
 
