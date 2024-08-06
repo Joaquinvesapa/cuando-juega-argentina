@@ -1,86 +1,64 @@
-import { chromium } from 'playwright'
-import crypto from 'crypto'
+import { getJson } from 'serpapi'
 import fs from 'fs'
-import util from 'util'
-const browser = await chromium.launch({ headless: true })
 
-const page = await browser.newPage()
+function formatGames(games) {
+	const formatedGames = []
+	games.forEach((game) => {
+		//Get Current month and Year
+		const currYear = new Date().getFullYear()
+		const currMonth = new Date().getMonth()
 
-await page.goto('https://www.espn.com/soccer/team/fixtures/_/id/202/arg')
+		//Create Datetime with Date And Time in String
+		const dateTime = new Date(
+			`${game.date} ${game.time !== 'TBD' ? game.time : ''}`
+		)
 
-const partidos = await page.$$eval('.Table__fixtures', (results) =>
-	results.map((table) => {
-		//Extract mont
-		const month = table.querySelector('.Table__Title')?.innerText
+		//Get dateTime month
+		const dateTimeMonth = dateTime.getMonth()
 
-		let matches = []
-		//Extract year
-		const year = month.match(/\d{4}/)
+		//Set year depends on the de month
+		if (dateTimeMonth > currMonth && dateTime.getFullYear() === 2001)
+			dateTime.setFullYear(currYear)
 
-		//Extract match date
-		table.querySelectorAll('.Table__TBODY tr').forEach((match) => {
-			//Set Hour
-			const hour = match.querySelector('.Table__TD:nth-child(5) a').innerText
-
-			//Create dateString with hour if is define
-			let dateString = new Date(
-				match.querySelector('.matchTeams')?.innerText +
-					` ${year} ` +
-					`${hour !== 'TBD' ? hour : '12:00 AM'}`
-			)
-				.toLocaleString()
-				.replaceAll('/', '-')
-
-			//Extract versus
-			const versus =
-				match.querySelector('.away').innerText === 'Argentina'
-					? match.querySelector('.local').innerText
-					: match.querySelector('.away').innerText
-
-			//Format date
-			console.log(hour)
-			let date = new Date(
-				match.querySelector('.matchTeams')?.innerText + ` ${year}`
-			).toLocaleDateString('es-ES', {
-				year: 'numeric',
-				weekday: 'long',
-				month: 'long',
-				day: 'numeric',
-			})
-			date = date.charAt(0).toUpperCase() + date.slice(1)
-
-			//Extract competition name
-			const competition = match.querySelector(
-				'.Table__TD:nth-child(6) span'
-			).innerText
-
-			const generateId = (competition, date, versus) => {
-				return `${competition}${date}${versus}`
-					.replaceAll('-', '')
-					.replaceAll(' ', '')
-					.replaceAll(',', '')
-					.toLowerCase()
-			}
-
-			matches.push({
-				id: generateId(competition, date, versus),
-				date,
-				dateString,
-				hour,
-				versus,
-				competition,
-			})
-		})
-
-		return { month, matches }
+		//Create JSON format
+		let newGame = {
+			tournament: game.tournament
+				.replace('CONMEBOL', '')
+				.replace('-', '')
+				.trim(),
+			estadio: game.stadium ?? 'TBD',
+			dateTime,
+			timeStamp: dateTime.getTime(),
+			date: game.date,
+			time: game.time,
+			teams: game.teams.map((team) => {
+				return { name: team.name, image: `${team.name.toLowerCase()}.webp` }
+			}),
+		}
+		formatedGames.push(newGame)
 	})
+	return formatedGames
+}
+//Get info from SERAPI
+getJson(
+	{
+		engine: 'google',
+		q: 'Cuando juega argentina',
+		location_requested: 'Buenos Aires Province, Argentina',
+		location_used: 'Buenos Aires Province,Argentina',
+		google_domain: 'google.com.ar',
+		hl: 'en',
+		lr: 'lang_es',
+		gl: 'ar',
+		device: 'desktop',
+		api_key: process.env.API_KEY,
+	},
+	(json) => {
+		const games = formatGames(json['sports_results'].games)
+		console.log(games)
+
+		fs.writeFileSync('./public/matches.json', JSON.stringify(games), 'utf8')
+
+		console.log('JSON file has been written successfully.')
+	}
 )
-
-console.log(
-	util.inspect(partidos, { showHidden: false, depth: null, colors: true })
-)
-fs.writeFileSync('./public/matches.json', JSON.stringify(partidos), 'utf8')
-
-console.log('JSON file has been written successfully.')
-
-await browser.close()

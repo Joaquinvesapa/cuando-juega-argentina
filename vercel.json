@@ -1,0 +1,9 @@
+{
+  "buildCommand": "node --env-file=.env ./src/scripts/extractInfo.js && astro build",
+  "crons": [
+    {
+      "path": "/api/generate-json",
+      "schedule": "0 0 */2 * *"
+    }
+  ]
+}

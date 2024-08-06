@@ -1,20 +1,18 @@
 ---
-import MONTHS from '../../../public/matches.json'
+import MATCHES from '../../../public/matches.json'
 
-interface Props{
-  currentMatchId:string
-}
-const{currentMatchId} = Astro.props
+// interface Props{
+//   currentMatchId:string
+// }
+console.log(MATCHES.length)
 ---
+
 {
-  MONTHS.map(month => (
-    <h2>{month.month}</h2>
-    <div>
-      {month.matches.filter(x =>x.id !== currentMatchId).map( match => (
-        <article>
-          <span>Argentina vs {match.versus}</span>
-        </article>
-      ))}
-    </div>
-  ))
+	MATCHES.slice(1).map((match) => (
+		<div>
+			<article>
+				<span>Argentina vs {match.teams[0]}</span>
+			</article>
+		</div>
+	))
 }

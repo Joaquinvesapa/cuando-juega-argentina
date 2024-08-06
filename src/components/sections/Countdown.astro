@@ -1,8 +1,14 @@
 ---
 import DateCounter from '@components/DateCounter.astro'
-import MATCHES from '@public/matches.json'
-const matchDate = MATCHES[0].matches[0].dateString
-const TIMESTAMP_DATE = new Date(matchDate).getTime()
+import type { Match } from '../../types/types'
+
+interface Props {
+	nextMatch: Match
+}
+
+const { nextMatch } = Astro.props
+
+const TIMESTAMP_DATE = nextMatch.timeStamp
 ---
 
 <section
@@ -61,7 +67,7 @@ const TIMESTAMP_DATE = new Date(matchDate).getTime()
 		function updateCountdown() {
 			const now = Date.now()
 			const diff = targetDate - now
-
+			// console.log(diff / DAYS)
 			if ($days instanceof HTMLElement) {
 				$days.textContent = formatDate(diff / DAYS)
 			}

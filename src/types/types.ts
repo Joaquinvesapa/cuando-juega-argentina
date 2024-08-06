@@ -1,7 +1,14 @@
 export interface Match {
+	tournament: string
+	estadio: string
+	dateTime: Date
+	timeStamp: number
 	date: string
-	startTime: string
-	endTime: string
-	versus: string
-	competition: string
+	time: string
+	teams: Team[]
+}
+
+export interface Team {
+	name: string
+	image: string
 }
