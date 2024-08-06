@@ -9,6 +9,7 @@ import MATCHES from '@public/matches.json'
 import NextMatchInfo from '@componentssections/NextMatchInfo.astro'
 
 const nextMatch: Match = MATCHES[0] as any
+console.log(nextMatch.teams[0].name)
 if (!nextMatch) return
 ---
 
@@ -16,6 +17,6 @@ if (!nextMatch) return
 	<Hero />
 	<Countdown nextMatch={nextMatch} />
 	<NextMatchInfo match={nextMatch} />
-	{nextMatch.time === 'TBD' && <CalendarButton nextMatch={nextMatch} />}
+	{nextMatch.time !== 'TBD' && <CalendarButton nextMatch={nextMatch} />}
 	<FollowingMatches />
 </Layout>

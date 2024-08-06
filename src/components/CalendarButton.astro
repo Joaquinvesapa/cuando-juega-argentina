@@ -10,8 +10,9 @@ const { nextMatch } = Astro.props
 <section
 	id="button-calendar-section"
 	data-comp={nextMatch.tournament}
-	data-date={nextMatch.date}
-	data-versus={nextMatch.teams[0]}
+	data-date={nextMatch.dateTime}
+	data-versus={nextMatch.teams.filter((team) => team.name !== 'Argentina')[0]
+		.name}
 	data-start-time={nextMatch.time}
 	data-end-time={nextMatch.time + 2}
 	class="w-full h-auto flex justify-center mt-5"
@@ -96,5 +97,7 @@ const { nextMatch } = Astro.props
 	}
 
 	button?.addEventListener('click', handleClick)
+	// button?.addEventListener('click', () => console))
+
 	// });
 </script>
