@@ -20,20 +20,23 @@ const { nextMatch } = Astro.props
 	<button
 		id="add-to-calendar"
 		class:list={[
-			'alto-button',
+			'alto-button group',
 			'text-textlight dark:text-textdark',
 			'bg-accentlight/40 dark:bg-primarydark hover:bg-accentlight hover:dark:bg-secondarydark',
 			'w-60 md:w-72 h-12 py-2 rounded-lg',
-			'hover:scale-95 transition-all',
+			'hover:scale-95  transition-all',
+			'active:scale-100',
+			'outline-none',
 		]}
 		><h5
 			class:list={[
 				'text-textlight dark:text-textdark',
 				'font-bold',
 				'text-md md:text-xl',
+				'group-hover:text-white transition-colors',
 			]}
 		>
-			Agregar al calendario
+			¡Agregar al calendario!
 		</h5>
 	</button>
 </section>
@@ -47,7 +50,7 @@ const { nextMatch } = Astro.props
 	const endTime = btnCalendarSection.getAttribute('data-end-time')
 
 	const config = {
-		name: `⚽ Argentina juega Vs ${versus}`,
+		name: `⚽ Juega Argentina Vs ${versus}`,
 		description: `¡Juega la Selección Argentina por una partido de ${tournament}`,
 		startDate: startDate,
 		startTime: startTime,
@@ -75,20 +78,20 @@ const { nextMatch } = Astro.props
 	}
 
 	const button = document.querySelector('#add-to-calendar')
-
+	const buttonText = button.querySelector('h5')
 	const handleClick = async () => {
 		if (status === 'loading') return
 		// console.log(status)
 		if (!status) {
-			const text = button.innerHTML
-			button.innerHTML = 'Cargando...'
+			const text = buttonText.innerText
+			buttonText.innerText = 'Cargando...'
 			status = 'loading'
 			await Promise.all([
 				import('/js/add-to-calendar.js'),
 				loadStyle('/css/add-to-calendar.css'),
 			])
 			status = 'loaded'
-			button.innerHTML = text
+			buttonText.innerText = text
 		}
 
 		// config.startTime = button.getAttribute('data-date')
