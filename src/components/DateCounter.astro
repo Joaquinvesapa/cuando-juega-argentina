@@ -21,16 +21,14 @@ const { id, label, shortLabel, attribute } = Astro.props
 >
 	<span
 		id={id}
-		class="font-bold text-accentlight text-3xl sm:text-4xl md:text-5xl 2xl:text-6xl"
+		class="font-bold text-accentlight text-4xl sm:text-4xl md:text-5xl 2xl:text-6xl"
 	></span>
 	<h3
 		class="font-bold text-sm sm:text-md md:text-lg lg:text-2xl uppercase hidden md:block"
 	>
 		{label}
 	</h3>
-	<h3
-		class="font-bold text-sm sm:text-md md:text-lg lg:text-2xl uppercase md:hidden"
-	>
+	<h3 class="font-bold text-lg uppercase md:hidden">
 		{shortLabel}
 	</h3>
 </article>

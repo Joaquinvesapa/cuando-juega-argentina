@@ -8,10 +8,10 @@ interface Props {
 const { match } = Astro.props
 ---
 
-<section class="w-full h-auto grid md:grid-cols-2 mt-5 gap-7">
+<section class="w-full h-auto grid md:grid-cols-2 mt-5 gap-6">
 	<article
 		class:list={[
-			'w-full h-full px-10 md:px-14 xl:px-12 2xl:px-16 py-5 ',
+			'w-full h-full px-3 md:px-14 xl:px-12 2xl:px-16 py-5 ',
 			'rounded-lg font-semibold bg-cardslight dark:bg-cardsdark',
 			'flex flex-col md:flex-row justify-between items-center gap-3',
 		]}
@@ -20,19 +20,19 @@ const { match } = Astro.props
 			class="flex md:flex-col justify-center md:justify-between items-center md:items-start w-full gap-x-10 md:gap-y-4"
 		>
 			<img
-				class="aspect-square object-cover w-10 rounded-md"
+				class="aspect-square object-cover w-16 rounded-md"
 				src=`/flags/${match.teams[0].image}`
 			/>
-			<span class="text-xl text-accentlight md:hidden">vs</span>
+			<span class="text-3xl text-accentlight md:hidden">vs</span>
 			<img
-				class="aspect-square object-cover w-10 rounded-md"
+				class="aspect-square object-cover w-16 rounded-md"
 				src=`/flags/${match.teams[1].image}`
 			/>
 		</div>
 		<div
 			class="flex md:flex-col justify-center md:justify-between items-center md:items-end py-2 w-full gap-4"
 		>
-			<p class="text-textlight text-sm text-end">
+			<p class="text-textlight text-lg text-center md:text-end">
 				{
 					new Date(match.date).toLocaleDateString('es', {
 						weekday: 'long',
@@ -41,7 +41,7 @@ const { match } = Astro.props
 					})
 				}
 			</p>
-			<p class="text-textlight text-sm text-end">
+			<p class="text-textlight text-lg text-center md:text-end">
 				{match.time}
 			</p>
 		</div>
@@ -56,18 +56,22 @@ const { match } = Astro.props
 		<div
 			class="w-full flex flex-col md:flex-row justify-between items-center gap-x-4"
 		>
-			<h4 class="text-accentlight dark:text-accentdark text-xl">Competencia</h4>
-			<p class="text-textlight text-sm text-end text-pretty">
+			<h4 class="text-accentlight dark:text-accentdark text-3xl md:text-xl">
+				Competencia
+			</h4>
+			<p class="text-textlight text-lg text-end text-pretty">
 				{match.tournament}
 			</p>
 		</div>
 		<div
 			class="w-full flex flex-col md:flex-row justify-between items-center gap-x-4"
 		>
-			<h4 class="text-accentlight dark:text-accentdark text-xl text-start">
+			<h4
+				class="text-accentlight dark:text-accentdark text-3xl md:text-xl text-start"
+			>
 				Estadio
 			</h4>
-			<p class="text-textlight text-sm text-end text-pretty">
+			<p class="text-textlight text-lg text-end text-pretty">
 				{match.estadio}
 			</p>
 		</div>
