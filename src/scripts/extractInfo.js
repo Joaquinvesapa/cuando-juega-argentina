@@ -26,7 +26,7 @@ function formatGames(games) {
 				.replace('CONMEBOL', '')
 				.replace('-', '')
 				.trim(),
-			estadio: game.stadium ?? 'TBD',
+			estadio: game.venue ?? 'TBD',
 			dateTime,
 			timeStamp: dateTime.getTime(),
 			date: game.date,
