@@ -1,3 +1,13 @@
+---
+import MATCHES from '@public/matches.json'
+const match = MATCHES.filter((x) => new Date(x.timeStamp) >= new Date())[0]
+const currMatch = new Date(match.timeStamp).getTime()
+const timeLimit = new Date()
+const today = Date.now()
+console.log(currMatch - today <= 0)
+console.log(timeLimit)
+---
+
 <section class="py-8 md:py-20 px-10 lg:px-20">
 	<h1
 		class="text-pretty text-center text-5xl md:text-5xl lg:text-5xl 2xl:text-6xl font-bold md:text-center text-textlight dark:text-textdark"
@@ -7,3 +17,32 @@
 		> juega en...
 	</h1>
 </section>
+<script>
+	import MATCHES from '@public/matches.json'
+
+	const title = document.querySelector('h1')
+	const effectPulse = document.querySelector('#pulse-effect')
+	// console.log(title)
+	// const matchDuration = 2 * 60 * 60 * 1000
+	document.addEventListener('astro:page-load', () => {
+		const matchDuration = 2 * 60 * 1000
+		const matchDate = new Date(MATCHES[0].dateTime)
+		function intervalCheck() {
+			const currentTime = new Date()
+			const matchEndTime = new Date(matchDate.getTime() + matchDuration)
+
+			if (currentTime >= matchDate && currentTime <= matchEndTime) {
+				title!.innerHTML =
+					'¡La seleccion <span class="text-primarylight dark:text-primarydark">ARGENTINA</span> esta jugando!'
+				effectPulse!.className = 'live'
+			} else {
+				// Eliminar los estilos si el partido no está activo
+				title!.innerHTML =
+					'La seleccion <span class="text-primarylight dark:text-primarydark">ARGENTINA</span> juega en...'
+				effectPulse!.classList.remove('live')
+			}
+		}
+		intervalCheck()
+		setInterval(intervalCheck, 1000)
+	})
+</script>
