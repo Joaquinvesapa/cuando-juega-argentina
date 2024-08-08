@@ -1,18 +1,18 @@
 ---
-import MATCHES from '../../../public/matches.json'
-
-// interface Props{
-//   currentMatchId:string
-// }
-console.log(MATCHES.length)
+import FollowingMatchCard from '@componentsFollowingMatchCard.astro'
+import MATCHESJSON from '../../../public/matches.json'
+import type { Match } from '@src/types/types'
 ---
 
-{
-	MATCHES.slice(1).map((match) => (
-		<div>
-			<article>
-				<span>Argentina vs {match.teams[0]}</span>
-			</article>
-		</div>
-	))
-}
+<section class="w-full">
+	<h3 class="text-center font-bold text-4xl text-primarylight mb-5">
+		Próximos partidos
+	</h3>
+	<div class="grid grid-cols-2 md:grid-cols-3 w-full gap-6">
+		{
+			MATCHESJSON.slice(1).map((match: Match) => (
+				<FollowingMatchCard match={match} />
+			))
+		}
+	</div>
+</section>
