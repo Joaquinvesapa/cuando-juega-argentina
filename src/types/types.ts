@@ -1,7 +1,7 @@
 export interface Match {
 	tournament: string
 	estadio: string
-	dateTime: Date
+	dateTime: string
 	timeStamp: number
 	date: string
 	time: string

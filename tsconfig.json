@@ -6,7 +6,8 @@
 			"@components*": ["./src/components/*"],
 			"@layouts*": ["./src/layouts/*"],
 			"@public/*": ["./public/*"],
-			"@types/*": ["./src/types/*"]
+			"@src/*": ["./src/*"]
+			// "@types/*": ["./src/types/*"]
 		}
 	},
 	"exclude": ["public"]
