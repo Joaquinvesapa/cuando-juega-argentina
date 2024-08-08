@@ -1,11 +1,14 @@
 ---
 import Header from '@components/Header.astro'
+import Footer from '@componentssections/Footer.astro'
 import '@fontsource-variable/inter'
+import { ViewTransitions } from 'astro:transitions'
 interface Props {
 	title: string
+	desc: string
 }
 
-const { title } = Astro.props
+const { title, desc } = Astro.props
 ---
 
 <!doctype html>
@@ -17,22 +20,31 @@ const { title } = Astro.props
 			content="Página web para consultar cuando juega la seleeción de Argentina"
 		/>
 		<meta name="viewport" content="width=device-width" />
+		<meta name="og:image" content="/og-es.png" />
+		<link rel="icon" type="image/svg" href="/icon/favicon.svg" />
 		<title>{title}</title>
+		<meta name="description" content={desc} />
+		<ViewTransitions />
 	</head>
 	<body>
+		<section id="pulse-effect"></section>
 		<main
-			class="min-h-screen bg-bglight dark:bg-bgdark px-3 md:px-20 xl:px-64 2xl:px-96 flex flex-col items-center pb-24"
+			class="min-h-screen text-textlight bg-bglight dark:bg-bgdark px-3 md:px-20 xl:px-64 2xl:px-96 flex flex-col items-center pb-24"
 		>
 			<section class="w-full">
 				<Header />
 			</section>
 			<slot />
 		</main>
+		<Footer />
 	</body>
 </html>
 <style is:global>
 	:root {
 		color-scheme: light dark;
+	}
+	html {
+		scrollbar-width: none;
 	}
 	@media (prefers-color-scheme: dark) {
 		body {
@@ -41,5 +53,30 @@ const { title } = Astro.props
 	}
 	body {
 		font-family: 'Inter Variable', sans-serif;
+	}
+	.live {
+		@apply w-screen h-screen fixed;
+		animation: pulse infinite 1.25s;
+		pointer-events: none;
+		/* box-shadow: 0px 0px 12px 13px rgba(255, 0, 0, 0.67) inset;
+		-webkit-box-shadow: 0px 0px 12px 13px rgba(255, 0, 0, 0.67) inset;
+		-moz-box-shadow: 0px 0px 12px 13px rgba(255, 0, 0, 0.67) inset; */
+	}
+	@keyframes pulse {
+		0% {
+			box-shadow: 0px 0px 12px 13px rgba(255, 0, 0, 0.67) inset;
+			-webkit-box-shadow: 0px 0px 12px 13px rgba(255, 0, 0, 0.67) inset;
+			-moz-box-shadow: 0px 0px 12px 13px rgba(255, 0, 0, 0.67) inset;
+		}
+		50% {
+			box-shadow: 0px 0px 12px 0px rgba(255, 0, 0, 0.67) inset;
+			-webkit-box-shadow: 0px 0px 12px 0px rgba(255, 0, 0, 0.67) inset;
+			-moz-box-shadow: 0px 0px 12px 0px rgba(255, 0, 0, 0.67) inset;
+		}
+		100% {
+			box-shadow: 0px 0px 12px 13px rgba(255, 0, 0, 0.67) inset;
+			-webkit-box-shadow: 0px 0px 12px 13px rgba(255, 0, 0, 0.67) inset;
+			-moz-box-shadow: 0px 0px 12px 13px rgba(255, 0, 0, 0.67) inset;
+		}
 	}
 </style>

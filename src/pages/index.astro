@@ -8,15 +8,20 @@ import type { Match } from '../types/types'
 import MATCHES from '@public/matches.json'
 import NextMatchInfo from '@componentssections/NextMatchInfo.astro'
 
-const nextMatch: Match = MATCHES[0] as any
-console.log(nextMatch.teams[0].name)
+const nextMatch: Match = MATCHES.filter(
+	(x) => new Date(x.timeStamp) >= new Date()
+)[0] as any
+console.log(nextMatch)
 if (!nextMatch) return
 ---
 
-<Layout title="Cuando juega Argentina 🇦🇷">
+<Layout
+	title="Cuando juega Argentina?"
+	desc="Conoce cuando es el próximo partido de Argentina! No te pierdas de ver a Lionel Messi!"
+>
 	<Hero />
 	<Countdown nextMatch={nextMatch} />
 	<NextMatchInfo match={nextMatch} />
 	{nextMatch.time !== 'TBD' && <CalendarButton nextMatch={nextMatch} />}
-	<!-- <FollowingMatches /> -->
+	<FollowingMatches />
 </Layout>
