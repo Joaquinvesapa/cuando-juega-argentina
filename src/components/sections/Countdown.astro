@@ -57,46 +57,44 @@ const TIMESTAMP_DATE = nextMatch.timeStamp
 	const MINUTES = SECONDS * 60
 	const HOURS = MINUTES * 60
 	const DAYS = HOURS * 24
-	document.addEventListener('astro:page-load', () => {
-		function init() {
-			const $countdown = document.querySelector('#countdown')
-			if (!$countdown) return
+	function init() {
+		const $countdown = document.querySelector('#countdown')
+		if (!$countdown) return
 
-			const $days = $countdown.querySelector('[data-days] span')
-			const $hours = $countdown.querySelector('[data-hours] span')
-			const $minutes = $countdown.querySelector('[data-minutes] span')
-			const $seconds = $countdown.querySelector('[data-seconds] span')
+		const $days = $countdown.querySelector('[data-days] span')
+		const $hours = $countdown.querySelector('[data-hours] span')
+		const $minutes = $countdown.querySelector('[data-minutes] span')
+		const $seconds = $countdown.querySelector('[data-seconds] span')
 
-			const formatDate = (time: number) =>
-				Math.floor(time).toString().padStart(2, '0')
+		const formatDate = (time: number) =>
+			Math.floor(time).toString().padStart(2, '0')
 
-			const timestamp = $countdown.getAttribute('data-date')
-			// const time = $countdown.getAttribute('data-time')
-			// console.log(time)
+		const timestamp = $countdown.getAttribute('data-date')
+		// const time = $countdown.getAttribute('data-time')
+		// console.log(time)
 
-			if (!timestamp) return
-			const targetDate = new Date(+timestamp).getTime()
+		if (!timestamp) return
+		const targetDate = new Date(+timestamp).getTime()
 
-			function updateCountdown() {
-				const now = Date.now()
-				const diff = targetDate - now
-				// console.log(diff / DAYS)
-				if ($days instanceof HTMLElement) {
-					$days.textContent = formatDate(diff / DAYS)
-				}
-				if ($hours instanceof HTMLElement) {
-					$hours.textContent = formatDate((diff % DAYS) / HOURS)
-				}
-				if ($minutes instanceof HTMLElement) {
-					$minutes.textContent = formatDate((diff % HOURS) / MINUTES)
-				}
-				if ($seconds instanceof HTMLElement) {
-					$seconds.textContent = formatDate((diff % MINUTES) / SECONDS)
-				}
+		function updateCountdown() {
+			const now = Date.now()
+			const diff = targetDate - now
+			// console.log(diff / DAYS)
+			if ($days instanceof HTMLElement) {
+				$days.textContent = formatDate(diff / DAYS)
 			}
-			updateCountdown()
-			setInterval(updateCountdown, 1000)
+			if ($hours instanceof HTMLElement) {
+				$hours.textContent = formatDate((diff % DAYS) / HOURS)
+			}
+			if ($minutes instanceof HTMLElement) {
+				$minutes.textContent = formatDate((diff % HOURS) / MINUTES)
+			}
+			if ($seconds instanceof HTMLElement) {
+				$seconds.textContent = formatDate((diff % MINUTES) / SECONDS)
+			}
 		}
-		init()
-	})
+		updateCountdown()
+		setInterval(updateCountdown, 1000)
+	}
+	init()
 </script>
