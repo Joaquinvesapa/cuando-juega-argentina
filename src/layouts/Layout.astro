@@ -2,7 +2,7 @@
 import Header from '@components/Header.astro'
 import Footer from '@components/sections/Footer.astro'
 import '@fontsource-variable/inter'
-import { ViewTransitions } from 'astro:transitions'
+import { fade, ViewTransitions } from 'astro:transitions'
 interface Props {
 	title: string
 	desc: string
@@ -24,7 +24,7 @@ const { title, desc } = Astro.props
 		<link rel="icon" type="image/svg" href="/icon/favicon.svg" />
 		<title>{title}</title>
 		<meta name="description" content={desc} />
-		<ViewTransitions />
+		<ViewTransitions transition:animate={'slide'} />
 	</head>
 	<body>
 		<section id="pulse-effect"></section>
@@ -53,30 +53,5 @@ const { title, desc } = Astro.props
 	}
 	body {
 		font-family: 'Inter Variable', sans-serif;
-	}
-	.live {
-		@apply w-screen h-screen fixed;
-		animation: pulse infinite 1.25s;
-		pointer-events: none;
-		/* box-shadow: 0px 0px 12px 13px rgba(255, 0, 0, 0.67) inset;
-		-webkit-box-shadow: 0px 0px 12px 13px rgba(255, 0, 0, 0.67) inset;
-		-moz-box-shadow: 0px 0px 12px 13px rgba(255, 0, 0, 0.67) inset; */
-	}
-	@keyframes pulse {
-		0% {
-			box-shadow: 0px 0px 12px 13px rgba(255, 0, 0, 0.67) inset;
-			-webkit-box-shadow: 0px 0px 12px 13px rgba(255, 0, 0, 0.67) inset;
-			-moz-box-shadow: 0px 0px 12px 13px rgba(255, 0, 0, 0.67) inset;
-		}
-		50% {
-			box-shadow: 0px 0px 12px 0px rgba(255, 0, 0, 0.67) inset;
-			-webkit-box-shadow: 0px 0px 12px 0px rgba(255, 0, 0, 0.67) inset;
-			-moz-box-shadow: 0px 0px 12px 0px rgba(255, 0, 0, 0.67) inset;
-		}
-		100% {
-			box-shadow: 0px 0px 12px 13px rgba(255, 0, 0, 0.67) inset;
-			-webkit-box-shadow: 0px 0px 12px 13px rgba(255, 0, 0, 0.67) inset;
-			-moz-box-shadow: 0px 0px 12px 13px rgba(255, 0, 0, 0.67) inset;
-		}
 	}
 </style>

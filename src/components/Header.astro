@@ -1,6 +1,7 @@
 ---
 import Linkedin from '@components/icons/Linkedin.astro'
 import Github from './icons/Github.astro'
+import ToogleThemeExample from './ToogleThemeExample.astro'
 
 interface SocialInfo {
 	link: string
@@ -22,7 +23,7 @@ interface SocialInfo {
 	</div>
 
 	<div class="flex gap-3 text-accentlight/40 dark:text-primarydark/40">
-		<a
+		<!-- <a
 			href="https://www.linkedin.com/in/joaquin-vesapa/"
 			target="_blank"
 			rel="noopener"
@@ -41,6 +42,7 @@ interface SocialInfo {
 			<Github
 				class:list={'w-7 md:w-8 h-auto hover:text-accentlight hover:scale-105 transition-all'}
 			/>
-		</a>
+		</a> -->
+		<ToogleThemeExample />
 	</div>
 </header>

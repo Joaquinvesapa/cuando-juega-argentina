@@ -14,7 +14,7 @@ const { nextMatch } = Astro.props
 	data-versus={nextMatch.teams.filter((team) => team.name !== 'Argentina')[0]
 		.name}
 	data-start-time={nextMatch.time}
-	data-end-time={nextMatch.time + 2}
+	data-end-time={nextMatch.time}
 	class="w-full h-auto flex justify-center my-10"
 >
 	<button
@@ -22,7 +22,7 @@ const { nextMatch } = Astro.props
 		class:list={[
 			'alto-button group',
 			'text-textlight dark:text-textdark',
-			'bg-accentlight/40 dark:bg-primarydark hover:bg-accentlight hover:dark:bg-secondarydark',
+			'bg-accentlight/40 dark:bg-primarydark hover:bg-accentlight hover:dark:bg-primarydark/50',
 			'w-auto md:w-fit px-6 py-4 rounded-lg',
 			'hover:scale-95  transition-all',
 			'active:scale-100',
@@ -48,15 +48,15 @@ const { nextMatch } = Astro.props
 	const versus = btnCalendarSection.getAttribute('data-versus')
 	const startTime = btnCalendarSection.getAttribute('data-start-time')
 	const endTime = btnCalendarSection.getAttribute('data-end-time')
-
+	// console.log(`${startTime}`)
 	const config = {
 		name: `⚽ Juega Argentina Vs ${versus}`,
 		description: `¡Juega la Selección Argentina por una partido de ${tournament}`,
 		startDate: startDate,
 		startTime: startTime,
-		endTime: endTime,
+		endTime: endTime + 2,
 		options: ['Google', 'Apple', 'Microsoft365', 'MicrosoftTeams'],
-		timeZone: 'America/Argentina/Buenos_Aires',
+		// timeZone: 'America/Argentina/Buenos_Aires',
 		trigger: 'click',
 		iCalFileName: 'Reminder-Event',
 	}
