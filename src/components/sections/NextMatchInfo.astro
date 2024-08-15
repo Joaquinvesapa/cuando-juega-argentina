@@ -1,4 +1,5 @@
 ---
+import Typography from '@components/Typography.astro'
 import type { Match } from 'src/types/types'
 
 interface Props {
@@ -17,13 +18,13 @@ const dateLocaleString = new Date(match.date).toLocaleDateString('es', {
 <section class="w-full h-auto grid lg:grid-cols-2 mt-5 gap-6">
 	<article
 		class:list={[
-			'w-full h-full px-3 lg:px-14 xl:px-12 2xl:px-16 py-5 ',
+			'w-full px-3 lg:px-14 xl:px-12 2xl:px-16 py-5 ',
 			'rounded-lg font-semibold bg-cardslight dark:bg-cardsdark',
 			'flex flex-col lg:flex-row justify-between items-center gap-3',
 		]}
 	>
 		<div
-			class="flex flex-col justify-center lg:justify-between items-center lg:items-start w-full gap-x-10 lg:gap-y-4"
+			class="flex flex-col gap-3 justify-center lg:justify-between items-center lg:items-start w-full gap-x-10 lg:gap-y-4"
 		>
 			<!-- <img
 				class="aspect-square object-cover w-16 rounded-md lg:hidden"
@@ -44,14 +45,14 @@ const dateLocaleString = new Date(match.date).toLocaleDateString('es', {
 			class="aspect-square object-cover w-16 rounded-md lg:hidden"
 			src=`/flags/${match.teams[1].image}`
 			/> -->
-			<div class="flex flex-col justify-center items-center gap-3 w-full">
-				<p class="text-textlight text-xl text-center">
+			<div class="flex flex-col justify-center items-center gap-2 w-full">
+				<Typography as="p" variant="h3" color="text">
 					{dateLocaleString.charAt(0).toUpperCase() + dateLocaleString.slice(1)}
 					📅
-				</p>
-				<p class="text-textlight text-xl text-center">
+				</Typography>
+				<Typography as="p" variant="h3" color="text">
 					{match.time} 🕔
-				</p>
+				</Typography>
 			</div>
 		</div>
 	</article>
@@ -65,22 +66,22 @@ const dateLocaleString = new Date(match.date).toLocaleDateString('es', {
 		<div
 			class="w-full flex flex-col lg:flex-col justify-between items-center gap-2"
 		>
-			<h4 class="text-accentlight dark:text-accentdark text-3xl">
-				Competencia
-			</h4>
-			<p class="text-textlight text-xl text-center text-pretty">
+			<Typography as="h2" variant="h2" color="accent" class="uppercase"
+				>Competencia</Typography
+			>
+			<Typography as="h3" variant="h3" color="text">
 				{match.tournament}
-			</p>
+			</Typography>
 		</div>
 		<div
 			class="w-full flex flex-col lg:flex-col justify-between items-center gap-2"
 		>
-			<h4 class="text-accentlight dark:text-accentdark text-3xl text-start">
-				Estadio
-			</h4>
-			<p class="text-textlight text-xl text-center text-pretty">
+			<Typography as="h2" variant="h2" color="accent" class="uppercase"
+				>Estadio</Typography
+			>
+			<Typography as="h3" variant="h3" color="text">
 				{match.estadio}
-			</p>
+			</Typography>
 		</div>
 	</article>
 </section>

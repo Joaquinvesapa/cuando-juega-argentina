@@ -1,13 +1,14 @@
 ---
 import FollowingMatchCard from '@components/FollowingMatchCard.astro'
+import Typography from '@components/Typography.astro'
 import MATCHESJSON from '@public/matches.json'
 import type { Match } from '@src/types/types'
 ---
 
-<section class="w-full">
-	<h3 class="text-center font-bold text-5xl text-primarylight mb-10">
-		Próximos partidos
-	</h3>
+<section class="flex flex-col gap-4 w-full">
+	<Typography as="h2" variant="h2" color="primary" class="uppercase"
+		>Próximos partidos</Typography
+	>
 	<div class="grid grid-cols-2 lg:grid-cols-3 w-full gap-6">
 		{
 			MATCHESJSON.slice(1).map((match: Match) => (

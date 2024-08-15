@@ -1,6 +1,6 @@
 ---
-import Clock from '@componentsicons/Clock.astro'
 import type { Match } from '@src/types/types'
+import Typography from './Typography.astro'
 interface Props {
 	match: Match
 }
@@ -25,15 +25,18 @@ const { match } = Astro.props
 		/>
 	</div>
 	<div
-		class="w-full flex flex-col sm:flex-row justify-center gap-1 items-center font-semibold text-textlight text-sm md:text-md text-center"
+		class="w-full flex flex-col justify-center gap-1 items-center font-semibold text-textlight text-sm md:text-md text-center"
 	>
-		<span>{match.date} 📅</span>
-		<span class="hidden sm:block">-</span>
+		<Typography as="p" variant="body" color="text">{match.date} 📅</Typography>
 		{
 			match.time === 'TBD' ? (
-				<p class="flex items-center gap-1">A definir 🕔</p>
+				<Typography as="p" variant="body" color="text" class="opacity-60 ">
+					TBD
+				</Typography>
 			) : (
-				<span>{match.time} 🕔</span>
+				<Typography as="p" variant="body" color="text">
+					{match.time} 🕔
+				</Typography>
 			)
 		}
 	</div>
