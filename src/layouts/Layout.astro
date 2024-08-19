@@ -2,7 +2,7 @@
 import Header from '@components/Header.astro'
 import Footer from '@components/sections/Footer.astro'
 import '@fontsource-variable/inter'
-import { fade, ViewTransitions } from 'astro:transitions'
+import { ViewTransitions } from 'astro:transitions'
 interface Props {
 	title: string
 	desc: string
@@ -24,7 +24,7 @@ const { title, desc } = Astro.props
 		<link rel="icon" type="image/svg" href="/icon/favicon.svg" />
 		<title>{title}</title>
 		<meta name="description" content={desc} />
-		<ViewTransitions transition:animate={'slide'} />
+		<ViewTransitions />
 	</head>
 	<body>
 		<section id="pulse-effect"></section>
