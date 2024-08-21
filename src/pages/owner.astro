@@ -1,5 +1,102 @@
 ---
+import Github from '@components/icons/Github.astro'
+import Linkedin from '@components/icons/Linkedin.astro'
+import Typography from '@components/Typography.astro'
 import Layout from '@layouts/Layout.astro'
 ---
 
-<Layout title="Quien soy yo"><section>Owner</section></Layout>
+<Layout title="Owner" desc="Una descripcion">
+	<div class="container px-6 lg:px-20">
+		<section
+			class="mt-10 flex flex-col md:flex-row items-center md:items-start gap-4 w-full justify-center"
+		>
+			<img
+				class="rounded-xl size-52 border-2 border-primarylight/30 dark:border-primarydark/30"
+				src="/joaquin_vesco_aparicio.webp"
+				alt="Fotografia de Joaquin Vesco Aparicio"
+			/>
+			<article
+				class="flex gap-2 flex-col items-center md:items-start justify-between"
+			>
+				<div>
+					<Typography
+						variant="h1"
+						color="text"
+						as="h1"
+						class:list={'md:text-start text-pretty text-6xlmd:text-5xl'}
+						>Soy Joaquin Vesco Aparicio</Typography
+					>
+					<Typography
+						variant="h2"
+						color="primary"
+						as="h2"
+						class:list={'md:text-start text-primary dark:text-textdark/50'}
+						>Desarrollador de Software
+					</Typography>
+				</div>
+				<div class="flex gap-2">
+					<a
+						href="https://github.com/joaquinvesapa"
+						target="_blank"
+						rel="noopener"
+					>
+						<Github
+							class:list={'size-8 text-primarylight dark:text-primarydark hover:text-primarydark dark:hover:text-secondarydark hover:scale-95 active:scale-105 transition-all'}
+						/>
+					</a>
+					<a
+						href="https://www.linkedin.com/in/joaquin-vesapa/"
+						target="_blank"
+						rel="noopener"
+					>
+						<Linkedin
+							class:list={'size-8 text-primarylight dark:text-primarydark hover:text-primarydark dark:hover:text-secondarydark hover:scale-95 active:scale-105 transition-all'}
+						/>
+					</a>
+				</div>
+			</article>
+		</section>
+		<section class="flex flex-col items-center mt-10">
+			<Typography variant="h2" as="h3" color="accent" class:list={'uppercase'}>
+				Objetivos de este proyecto
+			</Typography>
+			<Typography
+				variant="body"
+				as="p"
+				color="text"
+				class:list={'mt-2 w-full max-w-[80ch] text-pretty'}
+			>
+				Principalmente, este proyecto tiene como objetivo mostrar la información
+				de los partidos de la selección de Argentina de una manera más amigable
+				y accesible para todos los argentinos. Además, se pensó con la idea de
+				mostrar mis habilidades como desarrollador de software principalmente
+				del lado Front-End.
+			</Typography>
+		</section>
+		<section class="flex flex-col items-center mt-10">
+			<Typography variant="h2" as="h3" color="accent" class:list={'uppercase'}>
+				Un granito de arena
+			</Typography>
+			<Typography
+				variant="body"
+				as="p"
+				color="text"
+				class:list={'mt-2 w-full max-w-[80ch] text-pretty'}
+			>
+				Este es un proyecto propio, con proyección a futuro, pero actualmente
+				está abierto a la comunidad para que pueda ser mejorado y utilizado por
+				todos los argentinos. Si te interesa colaborar, puedes hacerlo a través
+				de <Typography
+					as="a"
+					variant="body"
+					color="accent"
+					href="https://github.com/joaquinvesapa/cuando-juega-argentina"
+					rel="noopener"
+					target="_blank"
+					class:list={'font-semibold hover:text-primarylight dark:hover:text-primarydark cursor-pointer transition'}
+					>GitHub</Typography
+				>.
+			</Typography>
+		</section>
+	</div>
+</Layout>
