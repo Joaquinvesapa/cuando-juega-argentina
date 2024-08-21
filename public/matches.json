@@ -1,23 +1,5 @@
 [
   {
-    "tournament": "Carrerita",
-    "estadio": "En mi casa",
-    "dateTime": "2024-08-09T00:00:00.000Z",
-    "timeStamp": 1723122060000,
-    "date": "Ago 9",
-    "time": "7:00 PM",
-    "teams": [
-      {
-        "name": "Argentina",
-        "image": "argentina.webp"
-      },
-      {
-        "name": "Chile",
-        "image": "chile.webp"
-      }
-    ]
-  },
-  {
     "tournament": "FIFA World Cup Qualifiers",
     "estadio": "Estadio Mâs Monumental",
     "dateTime": "2024-09-06T00:00:00.000Z",
