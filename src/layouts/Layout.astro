@@ -22,6 +22,8 @@ const { title, desc } = Astro.props
 		<meta name="viewport" content="width=device-width" />
 		<meta name="og:image" content="/og-es.webp" />
 		<link rel="icon" type="image/svg" href="/icon/favicon.svg" />
+		<script is:inline src="/registerSW.js"></script>
+		<link rel="manifest" href="/icon/manifest.json" />
 		<title>{title}</title>
 		<meta name="description" content={desc} />
 		<ViewTransitions />
