@@ -34,11 +34,13 @@ const dateLocaleString = new Date(match.date).toLocaleDateString('es', {
 				<img
 					class="aspect-square object-cover w-16 rounded-md"
 					src=`/flags/${match.teams[0].image}`
+					alt=`Bandera de ${match.teams[0].name}`
 				/>
-				<span class="text-3xl text-accentlight">vs</span>
+				<span class="text-4xl text-accentlight">vs</span>
 				<img
 					class="aspect-square object-cover w-16 rounded-md"
 					src=`/flags/${match.teams[1].image}`
+					alt=`Bandera de ${match.teams[1].name}`
 				/>
 			</div>
 			<!-- <img
