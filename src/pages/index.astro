@@ -1,12 +1,12 @@
 ---
-import CalendarButton from '@components/CalendarButton.astro'
-import Countdown from '@components/sections/Countdown.astro'
-import FollowingMatches from '@components/sections/FollowingMatches.astro'
-import Hero from '@components/sections/Hero.astro'
-import Layout from '@layouts/Layout.astro'
-import type { Match } from '../types/types'
+import CalendarButton from '@/components/CalendarButton.astro'
+import Countdown from '@/components/sections/Countdown.astro'
+import FollowingMatches from '@/components/sections/FollowingMatches.astro'
+import Hero from '@/components/sections/Hero.astro'
+import Layout from '@/layouts/Layout.astro'
+import type { Match } from '@/types/types'
 import MATCHES from '@public/matches.json'
-import NextMatchInfo from '@components/sections/NextMatchInfo.astro'
+import NextMatchInfo from '@/components/sections/NextMatchInfo.astro'
 
 const nextMatch: Match = MATCHES.filter(
 	(x) => new Date(x.timeStamp) >= new Date()
