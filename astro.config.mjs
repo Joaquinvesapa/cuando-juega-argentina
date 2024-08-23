@@ -1,7 +1,6 @@
 import { defineConfig } from 'astro/config'
 
 import tailwind from '@astrojs/tailwind'
-import animations from '@midudev/tailwind-animations'
 import { manifest } from './src/utils/seoConfig'
 import { VitePWA } from 'vite-plugin-pwa'
 
