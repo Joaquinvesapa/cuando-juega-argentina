@@ -43,7 +43,7 @@ function formatGames(games) {
 getJson(
 	{
 		engine: 'google',
-		q: 'Cuando juega argentina',
+		q: 'Cuando juega la seleccion argentina',
 		location_requested: 'Buenos Aires Province, Argentina',
 		location_used: 'Buenos Aires Province,Argentina',
 		google_domain: 'google.com.ar',
