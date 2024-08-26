@@ -57,7 +57,11 @@ getJson(
 		const games = formatGames(json['sports_results'].games)
 		console.log(games)
 
-		fs.writeFileSync('./public/matches.json', JSON.stringify(games), 'utf8')
+		fs.writeFileSync(
+			'./public/json/matches.json',
+			JSON.stringify(games),
+			'utf8'
+		)
 
 		console.log('JSON file has been written successfully.')
 	}

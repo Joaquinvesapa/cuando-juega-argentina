@@ -1,6 +1,6 @@
 ---
 import Typography from '@/components/Typography.astro'
-import MATCHES from '@public/matches.json'
+import MATCHES from '@public/json/matches.json'
 const match = MATCHES.filter((x) => new Date(x.timeStamp) >= new Date())[0]
 const currMatch = new Date(match.timeStamp).getTime()
 const timeLimit = new Date()

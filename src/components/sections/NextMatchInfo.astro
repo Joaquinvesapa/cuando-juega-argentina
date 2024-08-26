@@ -28,24 +28,24 @@ const dateLocaleString = new Date(match.dateTime).toLocaleDateString('es', {
 		>
 			<!-- <img
 				class="aspect-square object-cover w-16 rounded-md lg:hidden"
-				src=`/flags/${match.teams[0].image}`
+				src=`/imgs/flags/${match.teams[0].image}`
 			/> -->
 			<div class="items-center justify-center gap-10 w-full flex">
 				<img
 					class="aspect-square object-cover w-16 rounded-md"
-					src=`/flags/${match.teams[0].image}`
+					src=`/imgs/flags/${match.teams[0].image}`
 					alt=`Bandera de ${match.teams[0].name}`
 				/>
 				<span class="text-4xl text-accentlight">vs</span>
 				<img
 					class="aspect-square object-cover w-16 rounded-md"
-					src=`/flags/${match.teams[1].image}`
+					src=`/imgs/flags/${match.teams[1].image}`
 					alt=`Bandera de ${match.teams[1].name}`
 				/>
 			</div>
 			<!-- <img
 			class="aspect-square object-cover w-16 rounded-md lg:hidden"
-			src=`/flags/${match.teams[1].image}`
+			src=`/imgs/flags/${match.teams[1].image}`
 			/> -->
 			<div class="flex flex-col justify-center items-center gap-2 w-full">
 				<Typography as="p" variant="h3" color="text">
