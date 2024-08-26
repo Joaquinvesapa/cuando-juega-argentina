@@ -8,7 +8,7 @@ interface Props {
 
 const { match } = Astro.props
 
-const dateLocaleString = new Date(match.date).toLocaleDateString('es', {
+const dateLocaleString = new Date(match.dateTime).toLocaleDateString('es', {
 	weekday: 'long',
 	month: 'long',
 	day: 'numeric',
