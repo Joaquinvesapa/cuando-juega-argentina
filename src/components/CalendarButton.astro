@@ -71,7 +71,7 @@ const formattedDate = date.toISOString().split('T')[0]
 		description: `¡Juega la Selección Argentina por una partido de ${tournament}`,
 		startDate: startDate,
 		startTime: startTime,
-		endTime: '23:00',
+		endTime: endTime,
 		timeZone: 'currentBrowser',
 		options: ['Google', 'Apple', 'Microsoft365', 'MicrosoftTeams'],
 		trigger: 'click',
@@ -95,7 +95,7 @@ const formattedDate = date.toISOString().split('T')[0]
 	}
 
 	const button = document.querySelector('#add-to-calendar')
-	const buttonText = button.querySelector('h5')
+	const buttonText = button.querySelector('span')
 	const handleClick = async () => {
 		if (status === 'loading') return
 		// console.log(status)
