@@ -59,69 +59,72 @@ const formattedDate = date.toISOString().split('T')[0]
 </section>
 <script is:inline>
 	document.addEventListener('astro:page-load', () => {
-		const btnCalendarSection = document.getElementById(
-			'button-calendar-section'
-		)
-
-		const tournament = btnCalendarSection.getAttribute('data-comp')
-		const startDate = btnCalendarSection.getAttribute('data-date')
-		const versus = btnCalendarSection.getAttribute('data-versus')
-		const startTime = btnCalendarSection.getAttribute('data-start-time')
-		const endTime = btnCalendarSection.getAttribute('data-end-time')
-
-		const config = {
-			name: `⚽ Juega Argentina Vs ${versus}`,
-			description: `¡Juega la Selección Argentina por una partido de ${tournament}`,
-			startDate: startDate,
-			startTime: startTime,
-			endTime: endTime,
-			timeZone: 'currentBrowser',
-			options: ['Google', 'Apple', 'Microsoft365', 'MicrosoftTeams'],
-			trigger: 'click',
-			iCalFileName: 'Reminder-Event',
-		}
-
-		// console.log(config)
+		let btnCalendarSection = document.getElementById('button-calendar-section')
+		// Verifica si el elemento existe antes de continuar
 		let status
+		if (btnCalendarSection) {
+			const tournament = btnCalendarSection.getAttribute('data-comp')
+			const startDate = btnCalendarSection.getAttribute('data-date')
+			const versus = btnCalendarSection.getAttribute('data-versus')
+			const startTime = btnCalendarSection.getAttribute('data-start-time')
+			const endTime = btnCalendarSection.getAttribute('data-end-time')
 
-		function loadStyle(src) {
-			return new Promise((resolve, reject) => {
-				const link = document.createElement('link')
-				link.href = src
-				link.rel = 'stylesheet'
-
-				link.onload = () => resolve(link)
-				link.onerror = () => reject(new Error(`Style load error for ${src}`))
-
-				document.head.append(link)
-			})
-		}
-
-		const button = document.querySelector('#add-to-calendar')
-		const buttonText = button.querySelector('span')
-		const handleClick = async () => {
-			if (status === 'loading') return
-			// console.log(status)
-			if (!status) {
-				const text = buttonText.innerText
-				buttonText.innerText = 'Cargando...'
-				status = 'loading'
-				await Promise.all([
-					import('/js/add-to-calendar.js'),
-					loadStyle('/css/add-to-calendar.css'),
-				])
-				status = 'loaded'
-				buttonText.innerText = text
+			const config = {
+				name: `⚽ Juega Argentina Vs ${versus}`,
+				description: `¡Juega la Selección Argentina por una partido de ${tournament}`,
+				startDate: startDate,
+				startTime: startTime,
+				endTime: endTime,
+				timeZone: 'currentBrowser',
+				options: ['Google', 'Microsoft365'],
+				trigger: 'click',
+				iCalFileName: 'Reminder-Event',
 			}
 
-			// config.startTime = button.getAttribute('data-date')
+			// console.log(config)
 
-			window.atcb_action(config, button)
+			function loadStyle(src) {
+				return new Promise((resolve, reject) => {
+					const link = document.createElement('link')
+					link.href = src
+					link.rel = 'stylesheet'
+
+					link.onload = () => resolve(link)
+					link.onerror = () => reject(new Error(`Style load error for ${src}`))
+
+					document.head.append(link)
+				})
+			}
+
+			const button = document.querySelector('#add-to-calendar')
+			const buttonText = button.querySelector('span')
+			const handleClick = async () => {
+				if (status === 'loading') return
+				// console.log(status)
+				if (!status) {
+					const text = buttonText.innerText
+					buttonText.innerText = 'Cargando...'
+					status = 'loading'
+					await Promise.all([
+						import('/js/add-to-calendar.js'),
+						loadStyle('/css/add-to-calendar.css'),
+					])
+					status = 'loaded'
+					buttonText.innerText = text
+				}
+
+				// config.startTime = button.getAttribute('data-date')
+
+				window.atcb_action(config, button)
+			}
+			const resetButton = () => {
+				status = null
+				buttonText.innerText = '¡Agregar al calendario!'
+			}
+
+			button?.addEventListener('mouseleave', resetButton)
+
+			button?.addEventListener('click', handleClick)
 		}
-
-		button?.addEventListener('click', handleClick)
-		// button?.addEventListener('click', () => console))
-
-		// });
 	})
 </script>
