@@ -1,0 +1,35 @@
+---
+interface Props {
+	title: string
+	desc: string
+}
+
+const { title, desc } = Astro.props
+---
+
+<meta charset="UTF-8" />
+
+<title>{title}</title>
+
+<meta name="viewport" content="width=device-width" />
+<meta
+	property="og:image"
+	content={new URL('/imgs/pwa/og-es.webp', Astro.url)}
+/>
+<meta property="og:title" content={title} />
+<meta property="og:description" content={desc} />
+<meta property="og:url" content={Astro.url} />
+<meta property="og:site_name" content="Cuando Juega Argentina" />
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="es_ES" />
+
+<meta name="robots" content="index, follow" />
+<meta name="googlebot" content="index, follow" />
+
+<link rel="icon" type="image/svg" href="/icon/favicon.svg" />
+<meta name="msapplication-config" content="/browserconfig.xml" />
+
+<link rel="sitemap" href="/sitemap-index.xml" />
+
+<link rel="manifest" href="/icon/manifest.json" />
+<meta name="description" content={desc} />

@@ -1,6 +1,7 @@
 ---
 import Header from '@/components/Header.astro'
 import Footer from '@/components/sections/Footer.astro'
+import SEO from '@/components/SEO.astro'
 import '@fontsource-variable/inter'
 import { ViewTransitions } from 'astro:transitions'
 interface Props {
@@ -14,28 +15,10 @@ const { title, desc } = Astro.props
 <!doctype html>
 <html lang="en">
 	<head>
-		<meta charset="UTF-8" />
-		<meta
-			name="description"
-			content="Página web para consultar cuando juega la seleeción de Argentina"
-		/>
-		<meta name="viewport" content="width=device-width" />
-		<meta name="og:image" content="/imgs/pwa/og-es.webp" />
-		<link
-			rel="preload"
-			href="/imgs/me/joaquin_vesco_aparicio.webp"
-			as="image"
-			type="image/webp"
-		/>
-		<link rel="icon" type="image/svg" href="/icon/favicon.svg" />
-		<!-- <script is:inline src="/registerSW.js"></script> -->
-		<link rel="manifest" href="/icon/manifest.json" />
-		<title>{title}</title>
-		<meta name="description" content={desc} />
+		<SEO title={title} desc={desc} />
 		<ViewTransitions />
 	</head>
 	<body>
-		<section id="pulse-effect"></section>
 		<main
 			class="min-h-screen text-textlight bg-bglight dark:bg-bgdark px-5 md:px-20 xl:px-64 2xl:px-96 flex flex-col items-center pb-24"
 		>
