@@ -47,19 +47,19 @@ const atcbIcon = {
 }
 function atcb_init() {
 	/* eslint-disable */
-	console.log(
-		...oo_oo(
-			`27931521_1_17240_1_17319_4`,
-			'add-to-calendar button initialized (version ' + atcbVersion + ')'
-		)
-	),
-		/* eslint-disable */
-		console.log(
-			...oo_oo(
-				`27931521_1_17321_1_17401_4`,
-				'See https://github.com/add2cal/add-to-calendar-button for details'
-			)
-		)
+	// console.log(
+	// 	...oo_oo(
+	// 		`27931521_1_17240_1_17319_4`,
+	// 		'add-to-calendar button initialized (version ' + atcbVersion + ')'
+	// 	)
+	// ),
+	// 	/* eslint-disable */
+	// 	console.log(
+	// 		...oo_oo(
+	// 			`27931521_1_17321_1_17401_4`,
+	// 			'See https://github.com/add2cal/add-to-calendar-button for details'
+	// 		)
+	// 	)
 	let e = document.querySelectorAll('.atcb')
 	if (0 < e.length) {
 		var t = document.querySelectorAll('.atcb-initialized')
