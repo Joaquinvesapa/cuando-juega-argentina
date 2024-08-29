@@ -1,6 +1,6 @@
 # ¿Cuándo juega ARGENTINA?
 
-![Banner de Presentación](/public/imgs/pwa/og-es.png)
+![Banner de Presentación](/public/imgs/banner_github.png)
 
 Este proyecto es una Single Page Application (SPA) desarrollada con Astro y TailwindCSS, con el objetivo de brindar información actualizada sobre los próximos partidos de la selección argentina de fútbol. La aplicación está diseñada para ofrecer una experiencia simple y directa, mostrando un countdown hasta el próximo partido, así como una lista detallada de los siguientes encuentros.
 
