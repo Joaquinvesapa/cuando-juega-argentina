@@ -50,4 +50,4 @@ Las contribuciones están abiertas y son bienvenidas. Si tienes alguna sugerenci
 
 ---
 
-**Autor:** [Tu Nombre](https://github.com/joaquinvesapa)
+**Autor:** [Joaquin Vesco Aparicio (JoaquinVesapa)](https://github.com/joaquinvesapa)
