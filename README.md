@@ -2,7 +2,7 @@
 
 ![Banner de Presentación](/public/imgs/banner_github.png)
 [![website](https://img.shields.io/badge/my_portfolio-000?style=for-the-badge&logo=ko-fi&logoColor=white)](https://katherineoelsner.com/)
-[![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/joaquin-vesapa/))
+[![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/joaquin-vesapa/)
 
 Este proyecto es una Single Page Application (SPA) desarrollada con Astro y TailwindCSS, con el objetivo de brindar información actualizada sobre los próximos partidos de la selección argentina de fútbol. La aplicación está diseñada para ofrecer una experiencia simple y directa, mostrando un countdown hasta el próximo partido, así como una lista detallada de los siguientes encuentros.
 
