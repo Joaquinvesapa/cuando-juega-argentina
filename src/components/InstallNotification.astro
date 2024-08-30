@@ -1,0 +1,128 @@
+---
+import Close from './icons/Close.astro'
+---
+
+<section
+	class="notification fixed bottom-0 w-full px-5 md:px-20 xl:px-64 2xl:px-96 z-50"
+>
+	<div
+		hidden
+		class:list={[
+			'w-full px-6 lg:px-20 py-5 h-44 sm:h-36',
+			'border-2 border-primarylight/30 dark:border-primarydark/30',
+			'bg-secondarylight dark:bg-secondarydark  rounded-t-lg ',
+			'flex justify-center items-center gap-3',
+		]}
+	>
+		<section class="h-full flex flex-col justify-between">
+			<h2 class="text-textlight dark:text-textdark text-xl font-bold">
+				📱 Instalate la App
+			</h2>
+			<p
+				class="text-textlight max-w-[60ch] dark:text-textdark text-balance md:text-pretty"
+			>
+				¡Instalá esta app para seguir a la selección argentina! Tené el
+				calendario y horarios de los partidos siempre a mano🤳
+			</p>
+		</section>
+		<section class="h-full flex flex-col justify-between items-end">
+			<button id="close-btn"
+				><Close
+					class:list={'hover:text-primarylight active:scale-90 transition-all'}
+				/></button
+			>
+			<button
+				id="install-btn"
+				class:list={[
+					'my-auto sm:my-0',
+					'text-textlight dark:text-textdark',
+					'bg-accentlight/40 dark:bg-primarydark hover:bg-accentlight hover:dark:bg-primarydark/50',
+					'font-bold py-2 px-4 rounded-lg ',
+					'hover:text-white hover:scale-95 active:scale-100 transition',
+				]}
+			>
+				Instalar
+			</button>
+		</section>
+	</div>
+</section>
+<script is:inline>
+	document.addEventListener('astro:page-load', () => {
+		const $notification = document.querySelector('.notification')
+		const $btnInstalar = $notification.querySelector('#install-btn')
+		const $btnClose = $notification.querySelector('#close-btn')
+
+		$btnClose.addEventListener('click', () => {
+			$notification.classList.remove('slide-up')
+			$notification.classList.add('slide-down')
+		})
+
+		let installPrompt = null
+
+		window.addEventListener('beforeinstallprompt', (event) => {
+			// Si se ejecuta, significa que la aplicación no está instalada.
+			event.preventDefault()
+			installPrompt = event
+			isPwaInstalled = false
+
+			setTimeout(() => {
+				if ($notification) {
+					$notification.classList.add('slide-up')
+				}
+				$btnInstalar.addEventListener('click', async () => {
+					const result = await installPrompt.prompt()
+					if (result === 'accepted') {
+						isPwaInstalled = true
+						installPrompt = null
+						$notification.classList.remove('slide-up')
+						$notification.classList.add('slide-down')
+						window.clearTimeout()
+					}
+				})
+				setTimeout(() => {
+					$notification.classList.remove('slide-up')
+					$notification.classList.add('slide-down')
+				}, 10000)
+			}, 2000)
+		})
+
+		if (window.matchMedia('(display-mode: standalone)').matches) {
+			isPwaInstalled = true
+			console.log('La PWA ya está instalada')
+		}
+	})
+</script>
+<style>
+	.notification {
+		transform: translateY(100%);
+
+		&.slide-up {
+			transform: translateY(0);
+			animation: slideUp 0.5s ease;
+		}
+
+		&.slide-down {
+			transform: translateY(100%);
+			animation: slideDown 0.5s ease;
+		}
+	}
+
+	@keyframes slideUp {
+		0% {
+			transform: translateY(100%);
+		}
+		100% {
+			transform: translateY(0);
+		}
+	}
+
+	@keyframes slideDown {
+		0% {
+			transform: translateY(0);
+		}
+		100% {
+			display: none;
+			transform: translateY(100%);
+		}
+	}
+</style>
