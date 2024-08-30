@@ -1,27 +1,27 @@
 ---
-import ToogleThemeExample from './ToogleThemeExample.astro'
+import ToogleThemeExample from './ToogleThemeExample.astro';
 
 interface SocialInfo {
-	link: string
-	label: string
+  link: string;
+  label: string;
 }
 ---
 
 <header
-	class="h-auto rounded-lg py-3 px-5 flex w-full justify-between items-center mt-3 bg-cardslight dark:bg-cardsdark border-2 border-primarylight/30 dark:border-primarydark/30"
+  class="h-auto rounded-lg py-3 px-5 flex w-full justify-between items-center mt-3 bg-cardslight dark:bg-cardsdark border-2 border-primarylight/30 dark:border-primarydark/30"
 >
-	<div>
-		<a href="/" class="outline-none">
-			<img
-				class="w-7 md:w-8 rounded-md aspect-square object-cover hover:scale-105 transition-all"
-				src="/imgs/flags/argentina.webp"
-				alt="Bandera de Argentina"
-			/>
-		</a>
-	</div>
+  <div>
+    <a href="/" class="outline-none">
+      <img
+        class="w-7 md:w-8 rounded-md aspect-square object-cover hover:scale-105 transition-all"
+        src="/imgs/flags/argentina.webp"
+        alt="Bandera de Argentina"
+      />
+    </a>
+  </div>
 
-	<div class="flex gap-3 text-accentlight/40 dark:text-primarydark/40">
-		<!-- <a
+  <div class="flex gap-3 text-accentlight/40 dark:text-primarydark/40">
+    <!-- <a
 			href="https://www.linkedin.com/in/joaquin-vesapa/"
 			target="_blank"
 			rel="noopener"
@@ -41,6 +41,6 @@ interface SocialInfo {
 				class:list={'w-7 md:w-8 h-auto hover:text-accentlight hover:scale-105 transition-all'}
 			/>
 		</a> -->
-		<ToogleThemeExample />
-	</div>
+    <ToogleThemeExample />
+  </div>
 </header>

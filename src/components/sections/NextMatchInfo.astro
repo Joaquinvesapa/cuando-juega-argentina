@@ -1,90 +1,90 @@
 ---
-import Typography from '@/components/Typography.astro'
-import type { Match } from 'src/types/types'
+import Typography from '@/components/Typography.astro';
+import type { Match } from 'src/types/types';
 
 interface Props {
-	match: Match
+  match: Match;
 }
 
-const { match } = Astro.props
+const { match } = Astro.props;
 
 const dateLocaleString = new Date(match.dateTime).toLocaleDateString('es', {
-	weekday: 'long',
-	month: 'long',
-	day: 'numeric',
-})
+  weekday: 'long',
+  month: 'long',
+  day: 'numeric',
+});
 ---
 
 <section class="w-full h-auto grid lg:grid-cols-2 mt-5 gap-6">
-	<article
-		class:list={[
-			'w-full px-3 lg:px-14 xl:px-12 2xl:px-16 py-5 ',
-			'rounded-lg font-semibold bg-cardslight dark:bg-cardsdark border-2 border-primarylight/30 dark:border-primarydark/30',
-			'flex flex-col lg:flex-row justify-between items-center gap-3',
-		]}
-	>
-		<div
-			class="flex flex-col gap-3 justify-center lg:justify-between items-center lg:items-start w-full gap-x-10 lg:gap-y-4"
-		>
-			<!-- <img
+  <article
+    class:list={[
+      'w-full px-3 lg:px-14 xl:px-12 2xl:px-16 py-5 ',
+      'rounded-lg font-semibold bg-cardslight dark:bg-cardsdark border-2 border-primarylight/30 dark:border-primarydark/30',
+      'flex flex-col lg:flex-row justify-between items-center gap-3',
+    ]}
+  >
+    <div
+      class="flex flex-col gap-3 justify-center lg:justify-between items-center lg:items-start w-full gap-x-10 lg:gap-y-4"
+    >
+      <!-- <img
 				class="aspect-square object-cover w-16 rounded-md lg:hidden"
 				src=`/imgs/flags/${match.teams[0].image}`
 			/> -->
-			<div class="items-center justify-center gap-10 w-full flex">
-				<img
-					class="aspect-square object-cover w-16 rounded-md"
-					src=`/imgs/flags/${match.teams[0].image}`
-					alt=`Bandera de ${match.teams[0].name}`
-				/>
-				<span class="text-4xl text-accentlight">vs</span>
-				<img
-					class="aspect-square object-cover w-16 rounded-md"
-					src=`/imgs/flags/${match.teams[1].image}`
-					alt=`Bandera de ${match.teams[1].name}`
-				/>
-			</div>
-			<!-- <img
+      <div class="items-center justify-center gap-10 w-full flex">
+        <img
+          class="aspect-square object-cover w-16 rounded-md"
+          src=`/imgs/flags/${match.teams[0].image}`
+          alt=`Bandera de ${match.teams[0].name}`
+        />
+        <span class="text-4xl text-accentlight">vs</span>
+        <img
+          class="aspect-square object-cover w-16 rounded-md"
+          src=`/imgs/flags/${match.teams[1].image}`
+          alt=`Bandera de ${match.teams[1].name}`
+        />
+      </div>
+      <!-- <img
 			class="aspect-square object-cover w-16 rounded-md lg:hidden"
 			src=`/imgs/flags/${match.teams[1].image}`
 			/> -->
-			<div class="flex flex-col justify-center items-center gap-2 w-full">
-				<Typography as="p" variant="h3" color="text">
-					{dateLocaleString.charAt(0).toUpperCase() + dateLocaleString.slice(1)}
-					📅
-				</Typography>
-				<Typography as="p" variant="h3" color="text">
-					{match.time} 🕔
-				</Typography>
-			</div>
-		</div>
-	</article>
-	<article
-		class:list={[
-			'w-full h-auto',
-			'rounded-lg font-semibold bg-cardslight dark:bg-cardsdark border-2 border-primarylight/30 dark:border-primarydark/30',
+      <div class="flex flex-col justify-center items-center gap-2 w-full">
+        <Typography as="p" variant="h3" color="text">
+          {dateLocaleString.charAt(0).toUpperCase() + dateLocaleString.slice(1)}
+          📅
+        </Typography>
+        <Typography as="p" variant="h3" color="text">
+          {match.time} 🕔
+        </Typography>
+      </div>
+    </div>
+  </article>
+  <article
+    class:list={[
+      'w-full h-auto',
+      'rounded-lg font-semibold bg-cardslight dark:bg-cardsdark border-2 border-primarylight/30 dark:border-primarydark/30',
 
-			'px-5 lg:px-12 py-5 gap-2 flex flex-col sm:flex-row lg:flex-col justify-between items-center',
-		]}
-	>
-		<div
-			class="w-full flex flex-col lg:flex-col justify-between items-center gap-2"
-		>
-			<Typography as="h2" variant="h2" color="accent" class="uppercase"
-				>Competencia</Typography
-			>
-			<Typography as="h3" variant="h3" color="text">
-				{match.tournament}
-			</Typography>
-		</div>
-		<div
-			class="w-full flex flex-col lg:flex-col justify-between items-center gap-2"
-		>
-			<Typography as="h2" variant="h2" color="accent" class="uppercase"
-				>Estadio</Typography
-			>
-			<Typography as="h3" variant="h3" color="text">
-				{match.estadio}
-			</Typography>
-		</div>
-	</article>
+      'px-5 lg:px-12 py-5 gap-2 flex flex-col sm:flex-row lg:flex-col justify-between items-center',
+    ]}
+  >
+    <div
+      class="w-full flex flex-col lg:flex-col justify-between items-center gap-2"
+    >
+      <Typography as="h2" variant="h2" color="accent" class="uppercase"
+        >Competencia</Typography
+      >
+      <Typography as="h3" variant="h3" color="text">
+        {match.tournament}
+      </Typography>
+    </div>
+    <div
+      class="w-full flex flex-col lg:flex-col justify-between items-center gap-2"
+    >
+      <Typography as="h2" variant="h2" color="accent" class="uppercase"
+        >Estadio</Typography
+      >
+      <Typography as="h3" variant="h3" color="text">
+        {match.estadio}
+      </Typography>
+    </div>
+  </article>
 </section>

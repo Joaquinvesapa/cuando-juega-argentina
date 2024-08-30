@@ -58,64 +58,81 @@ const THEMES = ['Light', 'Dark', 'System']
 </style>
 
 <script is:inline>
+	let remove = null
+	//Guardo la preferencia del tema , verificando si es dark o light
+	const matchMedia = window.matchMedia('(prefers-color-scheme: dark)')
+
+	//Recupero la preferencia de tema guardada en el localstorage y retorno 'dark' o 'light' dependiendo de la preferencia
+	const getThemePreference = () => {
+		if (typeof localStorage !== 'undefined') {
+			return localStorage.getItem('theme') ?? 'system'
+		}
+
+		return window.matchMedia('(prefers-color-scheme: dark)').matches
+			? 'dark'
+			: 'light'
+	}
+
+	//Actualizo el icono del tema seleccionado
+	const updateIcon = (themePreference) => {
+		document.querySelectorAll('.theme-toggle-icon').forEach((element) => {
+			element.style.scale = element.id === themePreference ? '1' : '0'
+		})
+	}
+
 	document.addEventListener('astro:page-load', () => {
-		let remove = null
-		const matchMedia = window.matchMedia('(prefers-color-scheme: dark)')
 		const themesMenu = document.getElementById('themes-menu')
 
-		const getThemePreference = () => {
-			if (typeof localStorage !== 'undefined') {
-				return localStorage.getItem('theme') ?? 'system'
-			}
-
-			return window.matchMedia('(prefers-color-scheme: dark)').matches
-				? 'dark'
-				: 'light'
-		}
-
-		const updateIcon = (themePreference) => {
-			document.querySelectorAll('.theme-toggle-icon').forEach((element) => {
-				element.style.scale = element.id === themePreference ? '1' : '0'
-			})
-		}
-
-		const updateTheme = () => {
-			if (remove != null) {
-				remove()
-			}
-			matchMedia.addEventListener('change', updateTheme)
-			remove = () => {
-				matchMedia.removeEventListener('change', updateTheme)
-			}
-
-			const themePreference = getThemePreference()
-			const isDark =
-				themePreference === 'dark' ||
-				(themePreference === 'system' && matchMedia.matches)
-
-			updateIcon(themePreference)
-			document.documentElement.classList[isDark ? 'add' : 'remove']('dark')
-		}
-
-		updateTheme()
-
-		document.addEventListener('click', () =>
-			themesMenu.classList.remove('open')
-		)
-
+		//Escucho si se abre el menu de temas
 		document
 			.getElementById('theme-toggle-btn')
 			.addEventListener('click', (e) => {
 				e.stopPropagation()
+				console.log(e)
 				const isClosed = !themesMenu.classList.contains('open')
 				themesMenu.classList[isClosed ? 'add' : 'remove']('open')
 			})
 
+		//Escucho si se selecciona un tema
 		document.querySelectorAll('.themes-menu-option').forEach((element) => {
 			element.addEventListener('click', (e) => {
 				localStorage.setItem('theme', e.target.innerText.toLowerCase().trim())
 				updateTheme()
 			})
 		})
+
+		//Escucho si se selecciona fuera del menu de temas
+		document.addEventListener('click', () =>
+			themesMenu.classList.remove('open')
+		)
+
+		//Seteo en el HTML el tema guardado en el localstorage
+		const themePreference = getThemePreference()
+		updateIcon(themePreference)
+		const isDark =
+			themePreference === 'dark' ||
+			(themePreference === 'system' && matchMedia.matches)
+		document.documentElement.classList[isDark ? 'add' : 'remove']('dark')
 	})
+
+	//Actualizo el tema
+	const updateTheme = () => {
+		if (remove != null) {
+			remove()
+		}
+		matchMedia.addEventListener('change', updateTheme)
+		remove = () => {
+			matchMedia.removeEventListener('change', updateTheme)
+		}
+
+		const themePreference = getThemePreference()
+		const isDark =
+			themePreference === 'dark' ||
+			(themePreference === 'system' && matchMedia.matches)
+
+		updateIcon(themePreference)
+		document.documentElement.classList[isDark ? 'add' : 'remove']('dark')
+	}
+
+	updateTheme()
 </script>
