@@ -1,5 +1,6 @@
 ---
 import Header from '@/components/Header.astro'
+import InstallNotification from '@/components/InstallNotification.astro'
 import Footer from '@/components/sections/Footer.astro'
 import SEO from '@/components/SEO.astro'
 import '@fontsource-variable/inter'
@@ -22,6 +23,7 @@ const { title, desc } = Astro.props
 		<main
 			class="min-h-screen text-textlight bg-bglight dark:bg-bgdark px-5 md:px-20 xl:px-64 2xl:px-96 flex flex-col items-center pb-24"
 		>
+			<InstallNotification />
 			<section class="w-full">
 				<Header />
 			</section>
@@ -45,11 +47,6 @@ const { title, desc } = Astro.props
 	}
 	html {
 		scrollbar-width: none;
-	}
-	@media (prefers-color-scheme: dark) {
-		/* body {
-			color: rgba(255, 255, 255, 0.9);
-		} */
 	}
 	body {
 		font-family: 'Inter Variable', sans-serif;
