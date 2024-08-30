@@ -1,36 +1,36 @@
 ---
-import type { HTMLTag, Polymorphic } from 'astro/types'
+import type { HTMLTag, Polymorphic } from 'astro/types';
 type Props<Tag extends HTMLTag> = Polymorphic<{
-	as: Tag
-	variant: keyof typeof variantClasses
-	color: keyof typeof colorClasses
-}>
-const { as: Tag, variant, color, class: className, ...props } = Astro.props
+  as: Tag;
+  variant: keyof typeof variantClasses;
+  color: keyof typeof colorClasses;
+}>;
+const { as: Tag, variant, color, class: className, ...props } = Astro.props;
 
 const variantClasses = {
-	h1: 'text-pretty text-center font-bold text-4xl md:text-6xl',
-	h2: 'text-center font-bold text-2xl md:text-3xl',
-	h3: 'text-center font-semibold text-xl md:text-2xl',
-	body: 'text-lg',
-	small: '',
-	medium: 'text-xl md:text-2xl',
-	big: 'font-bold text-4xl md:text-6xl',
-}
+  h1: 'text-pretty text-center font-bold text-4xl md:text-6xl',
+  h2: 'text-center font-bold text-2xl md:text-3xl',
+  h3: 'text-center font-semibold text-xl md:text-2xl',
+  body: 'text-lg',
+  small: '',
+  medium: 'text-xl md:text-2xl',
+  big: 'font-bold text-4xl md:text-6xl',
+};
 
 const colorClasses = {
-	primary: 'text-primarylight dark:text-primarydark',
-	secondary: 'text-secondarylight dark:text-secondarydark',
-	accent: 'text-accentlight dark:text-accentdark',
-	text: 'text-textlight dark:text-textdark',
-}
+  primary: 'text-primarylight dark:text-primarydark',
+  secondary: 'text-secondarylight dark:text-secondarydark',
+  accent: 'text-accentlight dark:text-accentdark',
+  text: 'text-textlight dark:text-textdark',
+};
 
 const classes = [
-	variantClasses[variant as keyof typeof variantClasses],
-	colorClasses[color as keyof typeof colorClasses],
-	className,
-]
+  variantClasses[variant as keyof typeof variantClasses],
+  colorClasses[color as keyof typeof colorClasses],
+  className,
+];
 ---
 
 <Tag class:list={classes} {...props} tabindex="0">
-	<slot />
+  <slot />
 </Tag>

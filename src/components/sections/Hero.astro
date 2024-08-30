@@ -1,18 +1,18 @@
 ---
-import Typography from '@/components/Typography.astro'
-import MATCHES from '@public/json/matches.json'
-const match = MATCHES.filter((x) => new Date(x.timeStamp) >= new Date())[0]
-const currMatch = new Date(match.timeStamp).getTime()
-const timeLimit = new Date()
-const today = Date.now()
+import Typography from '@/components/Typography.astro';
+import MATCHES from '@public/json/matches.json';
+const match = MATCHES.filter((x) => new Date(x.timeStamp) >= new Date())[0];
+const currMatch = new Date(match.timeStamp).getTime();
+const timeLimit = new Date();
+const today = Date.now();
 // console.log(currMatch - today <= 0)
 // console.log(timeLimit)
 ---
 
 <section class="py-8 md:py-16 px-10 lg:px-20">
-	<Typography as="h1" variant="h1" color="text">
-		¿Cuándo juega <span class="text-accentlight dark:text-accentdark"
-			>ARGENTINA</span
-		>?
-	</Typography>
+  <Typography as="h1" variant="h1" color="text">
+    ¿Cuándo juega <span class="text-accentlight dark:text-accentdark"
+      >ARGENTINA</span
+    >?
+  </Typography>
 </section>

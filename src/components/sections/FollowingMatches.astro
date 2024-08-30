@@ -1,19 +1,19 @@
 ---
-import FollowingMatchCard from '@/components/FollowingMatchCard.astro'
-import Typography from '@/components/Typography.astro'
-import MATCHESJSON from '@public/json/matches.json'
-import type { Match } from '@/types/types'
+import FollowingMatchCard from '@/components/FollowingMatchCard.astro';
+import Typography from '@/components/Typography.astro';
+import MATCHESJSON from '@public/json/matches.json';
+import type { Match } from '@/types/types';
 ---
 
 <section class="flex flex-col gap-4 w-full">
-	<Typography as="h2" variant="h2" color="accent" class="uppercase"
-		>Próximos partidos</Typography
-	>
-	<div class="grid grid-cols-2 lg:grid-cols-3 w-full gap-6">
-		{
-			MATCHESJSON.slice(1).map((match: Match) => (
-				<FollowingMatchCard match={match} />
-			))
-		}
-	</div>
+  <Typography as="h2" variant="h2" color="accent" class="uppercase"
+    >Próximos partidos</Typography
+  >
+  <div class="grid grid-cols-2 lg:grid-cols-3 w-full gap-6">
+    {
+      MATCHESJSON.slice(1).map((match: Match) => (
+        <FollowingMatchCard match={match} />
+      ))
+    }
+  </div>
 </section>
