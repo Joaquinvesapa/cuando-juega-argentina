@@ -1,1 +1,74 @@
-[{"tournament":"FIFA World Cup Qualifiers","estadio":"Estadio Mâs Monumental","dateTime":"2024-09-06T00:00:00.000Z","timeStamp":1725580800000,"date":"Thu, Sep 5","time":"9:00 PM","teams":[{"name":"Argentina","image":"argentina.webp"},{"name":"Chile","image":"chile.webp"}]},{"tournament":"FIFA World Cup Qualifiers","estadio":"Estadio Metropolitano","dateTime":"2024-09-10T20:30:00.000Z","timeStamp":1726000200000,"date":"Sep 10","time":"5:30 PM","teams":[{"name":"Colombia","image":"colombia.webp"},{"name":"Argentina","image":"argentina.webp"}]},{"tournament":"FIFA World Cup Qualifiers","estadio":"Estadio Monumental de Maturín","dateTime":"2024-10-10T23:00:00.000Z","timeStamp":1728601200000,"date":"Oct 10","time":"8:00 PM","teams":[{"name":"Venezuela","image":"venezuela.webp"},{"name":"Argentina","image":"argentina.webp"}]},{"tournament":"FIFA World Cup Qualifiers","estadio":"Estadio Mâs Monumental","dateTime":"2024-10-16T00:00:00.000Z","timeStamp":1729036800000,"date":"Oct 15","time":"9:00 PM","teams":[{"name":"Argentina","image":"argentina.webp"},{"name":"Bolivia","image":"bolivia.webp"}]},{"tournament":"FIFA World Cup Qualifiers","estadio":"TBD","dateTime":"2024-11-14T03:00:00.000Z","timeStamp":1731553200000,"date":"Nov 14","time":"TBD","teams":[{"name":"Paraguay","image":"paraguay.webp"},{"name":"Argentina","image":"argentina.webp"}]},{"tournament":"FIFA World Cup Qualifiers","estadio":"TBD","dateTime":"2024-11-19T03:00:00.000Z","timeStamp":1731985200000,"date":"Nov 19","time":"TBD","teams":[{"name":"Argentina","image":"argentina.webp"},{"name":"Peru","image":"peru.webp"}]}]
+[
+  {
+    "tournament": "FIFA World Cup Qualifiers",
+    "estadio": "Estadio Mâs Monumental",
+    "dateTime": "2024-09-06T00:00:00.000Z",
+    "timeStamp": 1725580800000,
+    "date": "Thu, Sep 5",
+    "time": "9:00 PM",
+    "teams": [
+      { "name": "Argentina", "image": "argentina.webp" },
+      { "name": "Chile", "image": "chile.webp" }
+    ]
+  },
+  {
+    "tournament": "FIFA World Cup Qualifiers",
+    "estadio": "Estadio Metropolitano",
+    "dateTime": "2024-09-10T20:30:00.000Z",
+    "timeStamp": 1726000200000,
+    "date": "Sep 10",
+    "time": "5:30 PM",
+    "teams": [
+      { "name": "Colombia", "image": "colombia.webp" },
+      { "name": "Argentina", "image": "argentina.webp" }
+    ]
+  },
+  {
+    "tournament": "FIFA World Cup Qualifiers",
+    "estadio": "Estadio Monumental de Maturín",
+    "dateTime": "2024-10-10T23:00:00.000Z",
+    "timeStamp": 1728601200000,
+    "date": "Oct 10",
+    "time": "8:00 PM",
+    "teams": [
+      { "name": "Venezuela", "image": "venezuela.webp" },
+      { "name": "Argentina", "image": "argentina.webp" }
+    ]
+  },
+  {
+    "tournament": "FIFA World Cup Qualifiers",
+    "estadio": "Estadio Mâs Monumental",
+    "dateTime": "2024-10-16T00:00:00.000Z",
+    "timeStamp": 1729036800000,
+    "date": "Oct 15",
+    "time": "9:00 PM",
+    "teams": [
+      { "name": "Argentina", "image": "argentina.webp" },
+      { "name": "Bolivia", "image": "bolivia.webp" }
+    ]
+  },
+  {
+    "tournament": "FIFA World Cup Qualifiers",
+    "estadio": "TBD",
+    "dateTime": "2024-11-14T03:00:00.000Z",
+    "timeStamp": 1731553200000,
+    "date": "Nov 14",
+    "time": "TBD",
+    "teams": [
+      { "name": "Paraguay", "image": "paraguay.webp" },
+      { "name": "Argentina", "image": "argentina.webp" }
+    ]
+  },
+  {
+    "tournament": "FIFA World Cup Qualifiers",
+    "estadio": "TBD",
+    "dateTime": "2024-11-19T03:00:00.000Z",
+    "timeStamp": 1731985200000,
+    "date": "Nov 19",
+    "time": "TBD",
+    "teams": [
+      { "name": "Argentina", "image": "argentina.webp" },
+      { "name": "Peru", "image": "peru.webp" }
+    ]
+  }
+]
